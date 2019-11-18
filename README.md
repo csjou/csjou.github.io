@@ -14,4 +14,4 @@ double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2)+Math.cos(radLat1)*M
 s = s * EARTH_RADIUS; \
 s = Math.round(s * 10000) / 10000; \
 return s; \
-} \
+} 
