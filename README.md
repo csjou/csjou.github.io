@@ -17,56 +17,56 @@ return s; \
 } 
 
 ```mermaid
-graph TD;
-    %% 定義風格
-    classDef hardware fill:#ffffff,stroke:#333,stroke-width:2px;
-    classDef network fill:#bbf,stroke:#333,stroke-width:2px;
-    classDef docker fill:#dfd,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5;
-    classDef app fill:#fff4dd,stroke:#d4a017,stroke-width:2px;
+graph LR
+    %% 全域風格設定：以灰階、淺色為主，確保黑白列印清晰
+    classDef hardware fill:#ffffff,stroke:#000000,stroke-width:2px;
+    classDef network fill:#f2f2f2,stroke:#000000,stroke-width:1px,stroke-dasharray: 5 5;
+    classDef docker fill:#f9f9f9,stroke:#000000,stroke-width:2px;
+    classDef app fill:#ffffff,stroke:#000000,stroke-width:2px;
 
-    subgraph Sensing_Layer ["感知層 (Edge Layer - ESP32)"]
+    %% 左側：感知與傳輸 (Sensing & Network)
+    subgraph Left_Side ["數據源與傳輸 (Edge & Network)"]
         direction TB
-        S1[DHT11 / SHT31<br/>溫濕度感測]
-        S2[MH-Z19B<br/>CO2 監測]
+        S1[DHT11/SHT31<br/>環境感測器]
         CAM[ESP32-CAM<br/>影像擷取]
-        MCU[ESP32 主控端<br/>Arduino C++ / RTOS]
+        MCU[ESP32 主控模組<br/>Arduino C++]
         
-        S1 & S2 --> MCU
+        S1 --> MCU
+        CAM --> MCU
+        
+        MCU -->|MQTT/JSON| MQTT_P[MQTT 傳輸層]
+        MCU -->|HTTP Stream| HTTP_S[影像串流層]
     end
 
-    subgraph Network_Layer ["網絡傳輸層 (Network Layer)"]
-        MQTT_P[MQTT 協議<br/>JSON 格式推播]
-        HTTP_S[HTTP Stream<br/>低幀率影像串流]
-    end
-
-    subgraph Docker_VM ["服務層 (Docker Container - Windows 11 Host)"]
+    %% 右側：雲端服務與展示 (Server & UI)
+    subgraph Right_Side ["後端處理與應用 (Docker & UI)"]
         direction TB
-        Broker[Mosquitto<br/>MQTT Broker]
-        DB[(MySQL 8.0<br/>歷史資料庫)]
-        Worker[Worker Service<br/>數據解析與持久化]
-        
-        Broker <--> Worker
-        Worker --> DB
+        subgraph Docker_VM ["Docker 容器環境 (ASUS Laptop)"]
+            Broker[Mosquitto<br/>MQTT Broker]
+            Worker[Worker Service<br/>數據解析]
+            DB[(MySQL 8.0<br/>歷史資料庫)]
+            
+            Broker --- Worker
+            Worker --- DB
+        end
+
+        subgraph UI_Layer ["應用展示層"]
+            Dash[Blazor Server<br/>監控儀表板]
+            Chart[數據趨勢圖表]
+            Video[即時影像視窗]
+            
+            Dash --- Chart
+            Dash --- Video
+        end
     end
 
-    subgraph Application_Layer ["應用展示層 (UI Layer)"]
-        Dash[Blazor Server<br/>即時監控儀表板]
-        Chart[MudBlazor<br/>數據視覺化圖表]
-        Video[Live View<br/>串流監控視窗]
-        
-        Dash --- Chart
-        Dash --- Video
-    end
+    %% 左右橫向連接
+    MQTT_P ----> Broker
+    HTTP_S ----> Video
+    DB -.->|Data Query| Dash
 
-    %% 建立連線
-    MCU -->|Publish| MQTT_P
-    MQTT_P --> Broker
-    CAM -->|Stream| HTTP_S
-    HTTP_S --> Video
-    DB <-->|Query| Dash
-
-    %% 套用風格
-    class MCU,S1,S2,CAM hardware;
+    %% 套用灰階風格
+    class MCU,S1,CAM hardware;
     class MQTT_P,HTTP_S network;
     class Broker,DB,Worker docker;
     class Dash,Chart,Video app;
