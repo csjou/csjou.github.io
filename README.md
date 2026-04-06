@@ -19,7 +19,7 @@ return s; \
 ```mermaid
 graph TD;
     %% 定義風格
-    classDef hardware fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef hardware fill:#000000,stroke:#333,stroke-width:2px;
     classDef network fill:#bbf,stroke:#333,stroke-width:2px;
     classDef docker fill:#dfd,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5;
     classDef app fill:#fff4dd,stroke:#d4a017,stroke-width:2px;
