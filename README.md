@@ -16,7 +16,7 @@ s = Math.round(s * 10000) / 10000; \
 return s; \
 } 
 
-... mermaid
+```mermaid
 graph TD;
     %% 定義風格
     classDef hardware fill:#f9f,stroke:#333,stroke-width:2px;
