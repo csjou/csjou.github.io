@@ -17,28 +17,6 @@ return s; \
 } 
 
 
-graph TD;
-    %% 定義風格
-    classDef hardware fill:#f9f,stroke:#333,stroke-width:2px;
-    classDef network fill:#bbf,stroke:#333,stroke-width:2px;
-    classDef docker fill:#dfd,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5;
-    classDef app fill:#fff4dd,stroke:#d4a017,stroke-width:2px;
-
-    subgraph Sensing_Layer ["感知層 (Edge Layer - ESP32)"]
-        direction TB
-        S1[DHT11 / SHT31<br/>溫濕度感測]
-        S2[MH-Z19B<br/>CO2 監測]
-        CAM[ESP32-CAM<br/>影像擷取]
-        MCU[ESP32 主控端<br/>Arduino C++ / RTOS]
-        
-        S1 & S2 --> MCU
-    end
-
-    subgraph Network_Layer ["網絡傳輸層 (Network Layer)"]
-        MQTT_P[MQTT 協議<br/>JSON 格式推播]
-        HTTP_S[HTTP Stream<br/>低幀率影像串流]
-    end
-
     subgraph Docker_VM ["服務層 (Docker Container - Windows 11 Host)"]
         direction TB
         Broker[Mosquitto<br/>MQTT Broker]
