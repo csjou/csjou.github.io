@@ -18,54 +18,58 @@ return s; \
 
 ```mermaid
 graph LR
-    %% 全域風格設定：以灰階、淺色為主，確保黑白列印清晰
+    %% 全域風格設定：灰階、淺色、高對比
     classDef hardware fill:#ffffff,stroke:#000000,stroke-width:2px;
-    classDef network fill:#f2f2f2,stroke:#000000,stroke-width:1px,stroke-dasharray: 5 5;
-    classDef docker fill:#f9f9f9,stroke:#000000,stroke-width:2px;
+    classDef network fill:#ffffff,stroke:#000000,stroke-width:1.5px,stroke-dasharray: 5 5;
+    classDef docker fill:#f2f2f2,stroke:#000000,stroke-width:2px;
     classDef app fill:#ffffff,stroke:#000000,stroke-width:2px;
 
     %% 左側：感知與傳輸 (Sensing & Network)
-    subgraph Left_Side ["數據源與傳輸 (Edge & Network)"]
+    subgraph Sensing_Network ["感知與傳輸層 (Edge & Network)"]
         direction TB
-        S1[DHT11/SHT31<br/>環境感測器]
+        S1[DHT11/SHT31<br/>環境感測]
         CAM[ESP32-CAM<br/>影像擷取]
         MCU[ESP32 主控模組<br/>Arduino C++]
+        MQTT_P[MQTT 傳輸層<br/>JSON Push]
+        HTTP_S[影像串流層<br/>HTTP Stream]
         
-        S1 --> MCU
-        CAM --> MCU
-        
-        MCU -->|MQTT/JSON| MQTT_P[MQTT 傳輸層]
-        MCU -->|HTTP Stream| HTTP_S[影像串流層]
+        S1 & CAM --> MCU
+        MCU --> MQTT_P
+        MCU --> HTTP_S
     end
 
-    %% 右側：雲端服務與展示 (Server & UI)
-    subgraph Right_Side ["後端處理與應用 (Docker & UI)"]
+    %% 右側分層：服務在右側上方，應用在右側下方
+    subgraph Server_App_Group ["後端與應用端 (Host: ASUS GV301Q)"]
         direction TB
-        subgraph Docker_VM ["Docker 容器環境 (ASUS Laptop)"]
-            Broker[Mosquitto<br/>MQTT Broker]
-            Worker[Worker Service<br/>數據解析]
-            DB[(MySQL 8.0<br/>歷史資料庫)]
+        
+        %% 右上：服務層
+        subgraph Docker_VM ["服務層 (Docker Containers)"]
+            direction LR
+            Broker[Mosquitto<br/>Broker]
+            Worker[Worker<br/>Service]
+            DB[(MySQL 8.0<br/>Database)]
             
-            Broker --- Worker
-            Worker --- DB
+            Broker --> Worker --> DB
         end
 
-        subgraph UI_Layer ["應用展示層"]
-            Dash[Blazor Server<br/>監控儀表板]
-            Chart[數據趨勢圖表]
-            Video[即時影像視窗]
+        %% 右下：應用層
+        subgraph UI_Layer ["應用展示層 (Web Interface)"]
+            direction LR
+            Dash[Blazor Server<br/>Dashboard]
+            Chart[數據趨勢圖]
+            Video[影像監視窗]
             
             Dash --- Chart
             Dash --- Video
         end
     end
 
-    %% 左右橫向連接
+    %% 跨區連線
     MQTT_P ----> Broker
     HTTP_S ----> Video
-    DB -.->|Data Query| Dash
+    DB -.->|Data Fetch| Dash
 
-    %% 套用灰階風格
+    %% 套用風格
     class MCU,S1,CAM hardware;
     class MQTT_P,HTTP_S network;
     class Broker,DB,Worker docker;
