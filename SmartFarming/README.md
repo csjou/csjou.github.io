@@ -1,4 +1,4 @@
-graph TD
+graph TD;
     %% 定義風格
     classDef hardware fill:#f9f,stroke:#333,stroke-width:2px;
     classDef network fill:#bbf,stroke:#333,stroke-width:2px;
