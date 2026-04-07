@@ -17,12 +17,12 @@ return s; \
 } 
 
 ```mermaid
-graph LR
-    %% 全域風格設定：灰階、淺色、高對比
-    classDef hardware fill:#ffffff,stroke:#000000,stroke-width:2px;
-    classDef network fill:#ffffff,stroke:#000000,stroke-width:1.5px,stroke-dasharray: 5 5;
-    classDef docker fill:#f2f2f2,stroke:#000000,stroke-width:2px;
-    classDef app fill:#ffffff,stroke:#000000,stroke-width:2px;
+graph TD
+    %% 定義風格
+    classDef hardware fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef network fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef docker fill:#dfd,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5;
+    classDef app fill:#fff4dd,stroke:#d4a017,stroke-width:2px;
 
     subgraph Sensing_Layer ["感知層 (Edge Layer - ESP32)"]
         direction TB
