@@ -1,0 +1,133 @@
+@page "/"
+@rendermode InteractiveServer
+@using MushroomMonitor.Data
+@using MushroomMonitor.Models
+@using MushroomMonitor.Services
+@using Microsoft.EntityFrameworkCore
+@implements IDisposable
+@inject IDbContextFactory<AppDbContext> DbFactory
+@inject SensorDataNotifier Notifier
+
+<PageTitle>Brasilian Mushroom Monitor - 儀表板</PageTitle>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12 text-center mb-4">
+            <h1 class="display-4 text-primary">香檳茸房生態點狀況</h1>
+            <p class="lead">環境感測器數據即時監控</p>
+        </div>
+    </div>
+
+    @if (recentLogs == null)
+    {
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">載入中...</span>
+            </div>
+        </div>
+    }
+    else if (!recentLogs.Any())
+    {
+        <div class="alert alert-warning text-center" role="alert">
+            目前尚無感測資料，請確認感測器已連線並發布訊息。
+        </div>
+    }
+    else
+    {
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="bi bi-list-check me-2"></i>最近 10 筆感測資料</h5>
+                <button class="btn btn-sm btn-outline-light" @onclick="HandleManualRefresh">
+                    <i class="bi bi-arrow-clockwise"></i> 重新整理
+                </button>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-hover table-striped mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-4">節點 ID</th>
+                            <th>溫度 (°C)</th>
+                            <th>濕度 (%)</th>
+                            <th>時間</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var log in recentLogs)
+                        {
+                            <tr>
+                                <td class="ps-4 font-monospace">@log.NodeId</td>
+                                <td>
+                                    <span class="badge @(log.Temperature > 30 ? "bg-danger" : "bg-success")">
+                                        @log.Temperature.ToString("F1") °C
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="progress" style="height: 20px; min-width: 100px;">
+                                        <div class="progress-bar bg-info" role="progressbar" 
+                                             style="width: @(log.Humidity)%" 
+                                             aria-valuenow="@log.Humidity" aria-valuemin="0" aria-valuemax="100">
+                                            @log.Humidity.ToString("F1")%
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-muted">@log.Timestamp.ToString("yyyy/MM/dd HH:mm:ss")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private List<EnvironmentLog>? recentLogs;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // 訂閱通知服務
+        Notifier.OnDataReceived += HandleDataReceived;
+        await RefreshData();
+    }
+
+    private async void HandleDataReceived()
+    {
+        // 當收到通知時，非同步更新資料並通知 UI 重繪
+        await InvokeAsync(async () =>
+        {
+            await RefreshData();
+        });
+    }
+
+    private async Task HandleManualRefresh()
+    {
+        // 按鈕點擊手動重新整理
+        await RefreshData();
+    }
+
+    private async Task RefreshData()
+    {
+        try 
+        {
+            // 使用工廠建立新實例，確保每次都讀取最新資料且無執行緒衝突
+            using var db = await DbFactory.CreateDbContextAsync();
+            recentLogs = await db.EnvironmentLogs
+                .AsNoTracking()
+                .OrderByDescending(l => l.Timestamp)
+                .Take(10)
+                .ToListAsync();
+            
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error refreshing data: {ex.Message}");
+        }
+    }
+
+    public void Dispose()
+    {
+        // 元件關閉時，務必取消訂閱以避免記憶體洩漏
+        Notifier.OnDataReceived -= HandleDataReceived;
+    }
+}

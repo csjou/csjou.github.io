@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: mushroom_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mushroom_db
+      MYSQL_USER: mushroom_user
+      MYSQL_PASSWORD: mushroom_password
+      TZ: Asia/Taipei
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: always
+
+
+  # phpMyAdmin 管理介面
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: mushroom_pma
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: rootpassword
+      TZ: Asia/Taipei
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    restart: always
+
+
+  # Blazor Web 應用程式容器
+  blazor-web:
+    build:
+      context: ./MushroomMonitor
+      dockerfile: Dockerfile
+    container_name: mushroom_blazor
+    ports:
+      - "5135:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db;Database=mushroom_db;User=mushroom_user;Password=mushroom_password;
+      - MqttSettings__BrokerAddress=122.116.101.249
+      - IoTDevices__Esp32CamUrl=http://192.168.1.103
+      - TZ=Asia/Taipei
+    depends_on:
+      - db
+    restart: always
+
+volumes:
+  mysql_data:

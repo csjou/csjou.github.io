@@ -1,0 +1,111 @@
+@page "/videoview"
+@rendermode InteractiveServer
+@using Microsoft.Extensions.Configuration
+@using MushroomMonitor.Services
+@implements IDisposable
+@inject IConfiguration Configuration
+@inject SensorDataNotifier Notifier
+
+<PageTitle>Mushroom Monitor - 影像監控</PageTitle>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12 text-center mb-4">
+            <h1 class="display-5 text-primary"><i class="bi bi-camera-video me-2"></i>ESP32-CAM 影像監控</h1>
+            <p class="text-secondary">透過 MQTT 接收實時快照</p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow border-0 overflow-hidden">
+                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="badge bg-danger blink me-2">MQTT</span>
+                        <span>最新監控快照</span>
+                    </div>
+                    <div class="text-end">
+                        <small class="text-info">解析度: 640x480</small>
+                    </div>
+                </div>
+                <div class="card-body bg-light p-0 text-center" style="min-height: 480px; display: flex; align-items: center; justify-content: center; background-color: #222 !important;">
+                    @if (string.IsNullOrEmpty(currentImageSource))
+                    {
+                        <div class="text-white p-5">
+                            <div class="spinner-border text-primary mb-3" role="status"></div>
+                            <p>正在等待 ESP32-CAM 傳送第一張圖片...</p>
+                            <small class="text-muted">預計每 10-60 分鐘更新一次</small>
+                        </div>
+                    }
+                    else
+                    {
+                        <img id="camStream" src="@currentImageSource" class="img-fluid" alt="ESP32-CAM Snapshot" 
+                             style="max-width: 100%; max-height: 80vh; object-fit: contain; transition: opacity 0.5s;" />
+                    }
+                </div>
+                <div class="card-footer bg-white d-flex justify-content-between align-items-center">
+                    <span class="text-muted small">
+                        <i class="bi bi-clock me-1"></i> 最後接收時間: @lastUpdateTime
+                    </span>
+                    <button class="btn btn-sm btn-outline-primary" @onclick="() => StateHasChanged()">
+                        <i class="bi bi-arrow-clockwise"></i> 重新整理頁面
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="alert alert-success shadow-sm" role="alert">
+                <h5 class="alert-heading"><i class="bi bi-check-circle me-2"></i>運作模式: MQTT 模式</h5>
+                <hr>
+                <p class="mb-0">目前的影像是由 ESP32-CAM 拍下後，透過 MQTT 協定發送到伺服器，再轉發至您的手機。此模式不需要您與設備處於同一網域，只要有網路即可查看。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .blink {
+        animation: blinker 1.5s linear infinite;
+    }
+
+    @@keyframes blinker {
+        50% { opacity: 0.5; }
+    }
+</style>
+
+@code {
+    private string? currentImageSource;
+    private string lastUpdateTime = "尚未接收";
+
+    protected override void OnInitialized()
+    {
+        // 如果已經有快照了，先顯示最新的
+        if (!string.IsNullOrEmpty(Notifier.LatestImageBase64))
+        {
+            currentImageSource = $"data:image/jpeg;base64,{Notifier.LatestImageBase64}";
+            lastUpdateTime = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+        }
+
+        // 訂閱新圖片事件
+        Notifier.OnImageReceived += HandleImageReceived;
+    }
+
+    private void HandleImageReceived(string base64)
+    {
+        InvokeAsync(() =>
+        {
+            currentImageSource = $"data:image/jpeg;base64,{base64}";
+            lastUpdateTime = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+            StateHasChanged();
+        });
+    }
+
+    public void Dispose()
+    {
+        // 取消訂閱以避免記憶體洩漏
+        Notifier.OnImageReceived -= HandleImageReceived;
+    }
+}
