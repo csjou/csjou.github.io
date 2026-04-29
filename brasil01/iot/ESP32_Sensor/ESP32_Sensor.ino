@@ -4,9 +4,9 @@
 
 // --- Configuration ---
 #define DEVICE_ID "esp32_node_1"
-const char* ssid = "JOU"; // "YOUR_WIFI_SSID";
-const char* password = "aA891201"; // "YOUR_WIFI_PASSWORD";
-const char* mqtt_server = "122.116.101.249"; // Updated to external broker
+const char* ssid = "wifi_ssid"; // "YOUR_WIFI_SSID";
+const char* password = "wifi_pass"; // "YOUR_WIFI_PASSWORD";
+const char* mqtt_server = "mqtt_ip"; // Updated to external broker
 
 //#define DHTPIN 4
 #define DHTPIN 22
