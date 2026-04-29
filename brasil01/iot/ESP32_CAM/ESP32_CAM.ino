@@ -2,9 +2,9 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 
-const char* ssid = "JOU";
-const char* password = "aA891201";
-const char* mqtt_server = "122.116.101.249"; // 您的 MQTT Broker 位址
+const char* ssid = "wifi_ssid";
+const char* password = "wifipassword";
+const char* mqtt_server = "mqtt_ip"; // 您的 MQTT Broker 位址
 const char* mqtt_topic = "mushroom/node/cam01/image";
 
 WiFiClient espClient;
