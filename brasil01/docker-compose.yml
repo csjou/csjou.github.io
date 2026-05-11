@@ -43,8 +43,8 @@ services:
       - "5135:8080"
     environment:
       - ConnectionStrings__DefaultConnection=Server=db;Database=mushroom_db;User=mushroom_user;Password=mushroom_password;
-      - MqttSettings__BrokerAddress=122.116.101.249
-      - IoTDevices__Esp32CamUrl=http://192.168.1.103
+      - MqttSettings__BrokerAddress=mqtt_ip
+      - IoTDevices__Esp32CamUrl=http://esp_cam_ip
       - TZ=Asia/Taipei
     depends_on:
       - db

@@ -3,7 +3,11 @@
 #include <PubSubClient.h>
 
 const char* ssid = "wifi_ssid";
+<<<<<<< HEAD
 const char* password = "wifipassword";
+=======
+const char* password = "wifi_pass";
+>>>>>>> 154f2af283c27093ee9b2e4ce5fd9aa119be98bc
 const char* mqtt_server = "mqtt_ip"; // 您的 MQTT Broker 位址
 const char* mqtt_topic = "mushroom/node/cam01/image";
 

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>手機 GPS 地圖系統</title>
+
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<style>
+html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    font-family:Arial;
+}
+
+#map{
+    width:100%;
+    height:100%;
+}
+
+#panel{
+    position:absolute;
+    top:10px;
+    left:10px;
+    z-index:999;
+    background:white;
+    padding:10px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.3);
+    width:260px;
+    font-size:14px;
+}
+
+button{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    border:none;
+    background:#0078ff;
+    color:white;
+    border-radius:6px;
+    font-size:14px;
+}
+
+button:hover{
+    background:#005ccc;
+}
+
+small{
+    color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<div id="panel">
+<b>📍 GPS GIS 系統</b><br><br>
+
+<div id="info">等待定位中...</div>
+
+<button onclick="locateMe()">重新定位</button>
+<button onclick="clearTrack()">清除路線</button>
+
+<small>
+點擊地圖可新增標記
+</small>
+</div>
+
+<div id="map"></div>
+
+<script>
+
+// 初始地圖（板橋）
+var map = L.map('map').setView([25.0143,121.4672],16);
+
+// OSM 地圖
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    maxZoom:19,
+    attribution:'© OpenStreetMap'
+}).addTo(map);
+
+var marker;
+var track = [];
+var polyline = L.polyline([],{
+    color:'red',
+    weight:4
+}).addTo(map);
+
+// 即時定位
+function locateMe(){
+
+if(navigator.geolocation){
+
+navigator.geolocation.watchPosition(function(pos){
+
+    let lat = pos.coords.latitude;
+    let lng = pos.coords.longitude;
+    let acc = pos.coords.accuracy;
+
+    document.getElementById("info").innerHTML =
+    "緯度：" + lat.toFixed(6) + "<br>" +
+    "經度：" + lng.toFixed(6) + "<br>" +
+    "誤差：" + Math.round(acc) + " 公尺";
+
+    if(marker){
+        marker.setLatLng([lat,lng]);
+    }else{
+        marker = L.marker([lat,lng]).addTo(map)
+        .bindPopup("你的位置").openPopup();
+    }
+
+    map.setView([lat,lng]);
+
+    track.push([lat,lng]);
+    polyline.setLatLngs(track);
+
+}, function(err){
+    alert("定位失敗：" + err.message);
+},{
+    enableHighAccuracy:true,
+    maximumAge:1000,
+    timeout:10000
+});
+
+}else{
+    alert("瀏覽器不支援 GPS");
+}
+
+}
+
+locateMe();
+
+// 點擊新增標記
+map.on('click', function(e){
+
+L.marker(e.latlng).addTo(map)
+.bindPopup(
+"自訂標記<br>" +
+e.latlng.lat.toFixed(6) + "," +
+e.latlng.lng.toFixed(6)
+).openPopup();
+
+});
+
+// 清除路線
+function clearTrack(){
+    track=[];
+    polyline.setLatLngs([]);
+}
+
+</script>
+
+</body>
+</html>
