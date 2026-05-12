@@ -40,7 +40,7 @@ html,body{
 <div class="info">
 <b>毒性化學物質 GIS 地圖</b><br>
 紅點 = 儲存場所<br>
-紅圈 = 500 公尺管制區
+紅圈 = 100 公尺管制區
 </div>
 
 <div id="map"></div>
@@ -96,10 +96,13 @@ fetch('toxic_chemicals.geojson')
             layer.bindPopup(html);
 
             // 500m 圓形區塊
+            // p.radius => 100
+
+        
             let circle = L.circle(
                 layer.getLatLng(),
                 {
-                    radius: p.radius,
+                    radius: 100,
                     color:'red',
                     weight:1,
                     fill:true,
