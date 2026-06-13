@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VR 射擊遊戲</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* 2D HUD overlay — shown on top of the canvas */
+    #hud {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 24px;
+      box-sizing: border-box;
+    }
+
+    #score-display {
+      background: rgba(0, 0, 0, 0.55);
+      color: #00ffcc;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 8px 28px;
+      border-radius: 32px;
+      border: 1.5px solid rgba(0, 255, 204, 0.35);
+      display: none; /* 遊戲開始後才顯示 */
+      text-shadow: 0 0 12px #00ffcc88;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 2D 分數 HUD（步驟 4 啟用） -->
+  <div id="hud">
+    <div id="score-display">分數：<span id="score-value">0</span></div>
+  </div>
+
+  <a-scene
+    id="main-scene"
+    background="color: #0a0a1a"
+    fog="type: exponential; color: #0a0a1a; density: 0.025"
+    renderer="antialias: true"
+    vr-mode-ui="enabled: true"
+  >
+
+    <!-- ── 資產 ── -->
+    <a-assets></a-assets>
+
+    <!-- ══════════════════════════════
+         燈光
+    ══════════════════════════════ -->
+    <a-entity light="type: ambient; color: #1a1a3e; intensity: 0.8"></a-entity>
+    <a-entity
+      light="type: directional; color: #6688ff; intensity: 1.2; castShadow: true"
+      position="-3 6 -4"
+    ></a-entity>
+    <a-entity
+      light="type: point; color: #00ffcc; intensity: 1.8; distance: 20; decay: 2"
+      position="0 3 -3"
+    ></a-entity>
+    <!-- 地板邊緣暖光 -->
+    <a-entity
+      light="type: point; color: #ff44aa; intensity: 1.0; distance: 18; decay: 2"
+      position="5 0.5 -5"
+    ></a-entity>
+
+    <!-- ══════════════════════════════
+         地板 & 星空背景球
+    ══════════════════════════════ -->
+    <!-- 格線地板 -->
+    <a-grid-helper args="40, 40" position="0 -1.6 0"></a-grid-helper>
+    <a-entity
+      geometry="primitive: plane; width: 80; height: 80"
+      material="color: #090918; roughness: 0.9; metalness: 0.1"
+      rotation="-90 0 0"
+      position="0 -1.6 0"
+    ></a-entity>
+
+    <!-- 星空粒子（用多個小球模擬，輕量） -->
+    <a-entity id="stars"></a-entity>
+
+    <!-- ══════════════════════════════
+         主選單
+    ══════════════════════════════ -->
+    <a-entity id="main-menu" position="0 0 -4">
+
+      <!-- 標題背景板 -->
+      <a-entity
+        geometry="primitive: plane; width: 5; height: 1.2"
+        material="color: #0d0d2b; opacity: 0.85; transparent: true; side: double"
+        position="0 1.2 0"
+      ></a-entity>
+
+      <!-- 主標題 -->
+      <a-text
+        value="⚡ VR 射擊遊戲"
+        align="center"
+        color="#00ffcc"
+        width="5"
+        position="0 1.55 0.01"
+        font="exo2bold"
+        letter-spacing="3"
+      ></a-text>
+      <a-text
+        value="CYBER SHOOTER"
+        align="center"
+        color="#ffffff"
+        width="3.2"
+        position="0 1.05 0.01"
+        opacity="0.5"
+        letter-spacing="6"
+      ></a-text>
+
+      <!-- 裝飾線條 -->
+      <a-entity
+        geometry="primitive: plane; width: 4.5; height: 0.015"
+        material="color: #00ffcc; opacity: 0.6"
+        position="0 0.78 0.01"
+      ></a-entity>
+
+      <!-- 副標題 -->
+      <a-text
+        value="凝視目標 2 秒即可擊碎 · 競速計分"
+        align="center"
+        color="#aaaacc"
+        width="3.5"
+        position="0 0.55 0.01"
+      ></a-text>
+
+      <!-- START 按鈕 -->
+      <a-entity id="start-button" position="0 -0.2 0.02">
+        <!-- 按鈕底板（發光邊框效果） -->
+        <a-entity
+          geometry="primitive: plane; width: 2.6; height: 0.75"
+          material="color: #001a14; opacity: 0.95; transparent: true"
+          position="0 0 -0.005"
+        ></a-entity>
+        <!-- 按鈕邊框 -->
+        <a-entity
+          geometry="primitive: plane; width: 2.65; height: 0.80"
+          material="color: #00ffcc; opacity: 0.85; transparent: true"
+          position="0 0 -0.01"
+        ></a-entity>
+        <!-- 按鈕文字 -->
+        <a-text
+          value="▶  開始遊戲"
+          align="center"
+          color="#00ffcc"
+          width="3.5"
+          position="0 0.0 0.005"
+          font="exo2bold"
+          letter-spacing="4"
+        ></a-text>
+      </a-entity>
+
+      <!-- 操作說明 -->
+      <a-text
+        value="使用 VR 頭盔或行動裝置體驗最佳效果"
+        align="center"
+        color="#555577"
+        width="3.2"
+        position="0 -0.75 0.01"
+      ></a-text>
+
+      <!-- 選單裝飾圓球 -->
+      <a-sphere
+        radius="0.08" color="#00ffcc" opacity="0.7"
+        position="-2.5 1.2 0.1"
+        animation="property: position; to: -2.5 1.45 0.1; dir: alternate; dur: 1800; loop: true; easing: easeInOutSine"
+      ></a-sphere>
+      <a-sphere
+        radius="0.06" color="#ff44aa" opacity="0.7"
+        position="2.5 0.9 0.1"
+        animation="property: position; to: 2.5 1.15 0.1; dir: alternate; dur: 2200; loop: true; easing: easeInOutSine"
+      ></a-sphere>
+      <a-sphere
+        radius="0.05" color="#6688ff" opacity="0.7"
+        position="0 -1.1 0.1"
+        animation="property: position; to: 0 -0.85 0.1; dir: alternate; dur: 1600; loop: true; easing: easeInOutSine"
+      ></a-sphere>
+
+    </a-entity>
+    <!-- /主選單 -->
+
+    <!-- ══════════════════════════════
+         目標物容器（步驟 3 填入）
+    ══════════════════════════════ -->
+    <a-entity id="targets-container"></a-entity>
+
+    <!-- ══════════════════════════════
+         攝影機（步驟 2 強化）
+    ══════════════════════════════ -->
+    <a-entity id="rig" position="0 0 0">
+      <a-camera
+        id="main-camera"
+        look-controls="pointerLockEnabled: false"
+        wasd-controls="enabled: false"
+        position="0 1.6 0"
+      >
+        <!-- 準心（步驟 2 加入） -->
+      </a-camera>
+    </a-entity>
+
+  </a-scene>
+
+  <script>
+    // ══════════════════════════════
+    // 星空生成（純 JS，輕量）
+    // ══════════════════════════════
+    (function generateStars() {
+      const container = document.getElementById('stars');
+      const count = 120;
+      for (let i = 0; i < count; i++) {
+        const star = document.createElement('a-sphere');
+        const r = 35 + Math.random() * 10;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.random() * Math.PI;
+        const x = r * Math.sin(phi) * Math.cos(theta);
+        const y = r * Math.cos(phi);
+        const z = r * Math.sin(phi) * Math.sin(theta);
+        const size = 0.02 + Math.random() * 0.05;
+        const brightness = Math.floor(180 + Math.random() * 75);
+        star.setAttribute('radius', size);
+        star.setAttribute('color', `rgb(${brightness},${brightness},255)`);
+        star.setAttribute('position', `${x} ${y} ${z}`);
+        star.setAttribute('material', 'shader: flat');
+        container.appendChild(star);
+      }
+    })();
+
+    // ══════════════════════════════
+    // 遊戲狀態
+    // ══════════════════════════════
+    const GameState = {
+      score: 0,
+      isPlaying: false,
+    };
+
+    // 步驟 3、4 的邏輯將加在這裡
+  </script>
+</body>
+</html>
