@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Stage 1: VR Gaze Shooter</title>
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <style>
+    /* 建立浮動在 3D 畫面上的 2D UI */
+    #ui-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 999; pointer-events: none; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+    #menu { background: rgba(0,0,0,0.8); padding: 20px; border-radius: 10px; text-align: center; pointer-events: auto; }
+    h1, h2 { color: white; font-family: sans-serif; margin: 10px 0; }
+    button { padding: 15px 30px; font-size: 20px; cursor: pointer; border-radius: 5px; border: none; background: #4CAF50; color: white; }
+    #score-display { position: absolute; top: 20px; left: 20px; color: yellow; font-size: 24px; font-family: sans-serif; font-weight: bold; display: none; }
+  </style>
+</head>
+<body>
+  <div id="ui-layer">
+    <div id="score-display">Score: 0</div>
+    <div id="menu">
+      <h1>VR Shooter</h1>
+      <button id="start-btn">Start Game</button>
+    </div>
+  </div>
+
+  <script>
+    AFRAME.registerComponent('game-manager', {
+      init: function () {
+        this.score = 0;
+        this.targetEl = null;
+        document.getElementById('start-btn').addEventListener('click', () => this.startGame());
+      },
+      startGame: function () {
+        document.getElementById('menu').style.display = 'none';
+        document.getElementById('score-display').style.display = 'block';
+        this.score = 0;
+        this.updateScore();
+        this.spawnTarget();
+      },
+      spawnTarget: function () {
+        if (this.targetEl) this.targetEl.parentNode.removeChild(this.targetEl);
+        
+        // 動態生成目標方塊
+        let el = document.createElement('a-box');
+        let x = (Math.random() - 0.5) * 10; // X: -5 到 5
+        let y = Math.random() * 3 + 1;      // Y: 1 到 4
+        let z = - (Math.random() * 5 + 3);  // Z: -3 到 -8 (前方)
+        
+        el.setAttribute('position', `${x} ${y} ${z}`);
+        el.setAttribute('color', '#FF5722');
+        el.setAttribute('class', 'clickable'); // 讓準心只對 clickable 反應
+        el.setAttribute('animation', 'property: rotation; to: 360 360 0; loop: true; dur: 3000');
+        
+        // 凝視 1 秒後觸發 click 事件
+        el.addEventListener('click', () => {
+          this.score += 10;
+          this.updateScore();
+          this.spawnTarget(); // 擊碎後生成下一個
+        });
+        
+        this.el.sceneEl.appendChild(el);
+        this.targetEl = el;
+      },
+      updateScore: function () {
+        document.getElementById('score-display').innerText = 'Score: ' + this.score;
+      }
+    });
+  </script>
+
+  <a-scene game-manager cursor="rayOrigin: mouse">
+    <a-sky color="#ECECEC"></a-sky>
+    <a-camera position="0 1.6 0">
+      <a-cursor fuse="true" fuse-timeout="1000" raycaster="objects: .clickable" 
+                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" 
+                material="color: black; shader: flat"
+                animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+                animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1000; from: 1 1 1; to: 0.1 0.1 0.1"
+                animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1">
+      </a-cursor>
+    </a-camera>
+  </a-scene>
+</body>
+</html>
