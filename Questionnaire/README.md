@@ -165,3 +165,117 @@ flowchart TD
 3. 切換到 **Preview（預覽）** 模式，您就會直接看到圖形化的流程圖，而不再只是純文字了。
 
 ```
+面對「8組自變項（類別變項）」與「5組依變項（管教方式）」的分析結構，這意味著您總共需要進行 **$8 \times 5 = 40$ 次的單因子變異數分析 (One-way ANOVA)**。
+
+如果手動進行這 40 次的「同質性檢定 $\rightarrow$ 挑選 ANOVA/Welch $\rightarrow$ 事後比較」，將會非常耗時且容易出錯。因此，最有效率的作法是撰寫一段 **Python 批次處理程式碼**，利用迴圈自動完成這 40 次檢定，並將結果輸出成一張總表（如 Excel 格式），方便您直接撰寫論文或報告。
+
+以下為您提供批次處理的實作策略與自動化程式碼：
+
+### ⚠️ 統計學上的小提醒 (Type I Error)
+
+當您針對同一批樣本進行高達 40 次的 ANOVA 檢定時，會面臨「整體誤差率膨脹」（Family-wise Error Rate）的問題，也就是增加「型一錯誤」（偽陽性，誤判為有顯著差異）的機率。
+
+* **建議解法 1**：在解讀 $p$ 值時，考慮採用 **Bonferroni 校正**（將判斷顯著的標準 $\alpha = 0.05$ 除以 40，改為 $p < 0.00125$ 才算顯著）。
+* **建議解法 2**：若這 5 組管教方式彼此高度相關，您也可以考慮先跑 **MANOVA（多變量變異數分析）** 作為前置檢驗。
+
+---
+
+### 💻 Python 自動化批次分析程式碼
+
+這段程式碼採用了您先前提出的完整判斷邏輯，並將其封裝在雙層迴圈中，最後會產出一份清晰的總結報表。
+
+```python
+import pandas as pd
+import pingouin as pg
+import numpy as np
+
+# ==========================================
+# 1. 建立模擬數據 (實務上請換成您的真實問卷資料)
+# ==========================================
+# 假設 8 組自變項 (Independent Variables)
+iv_cols = [f'IV_變項{i}' for i in range(1, 9)] 
+# 假設 5 組依變項 (Dependent Variables - 管教方式)
+dv_cols = [f'DV_管教方式{j}' for j in range(1, 6)]
+
+# 隨機生成 300 筆樣本資料做示範
+np.random.seed(42)
+data_dict = {iv: np.random.choice(['組別A', '組別B', '組別C', '組別D'], 300) for iv in iv_cols}
+data_dict.update({dv: np.random.normal(loc=70, scale=10, size=300) for dv in dv_cols})
+df = pd.DataFrame(data_dict)
+
+# ==========================================
+# 2. 自動化批次執行 8 x 5 = 40 次 ANOVA 流程
+# ==========================================
+summary_results = []
+
+for dv in dv_cols:
+    for iv in iv_cols:
+        # Step 1: Levene's Test (變異數同質性檢定)
+        levene_res = pg.homoscedasticity(df, dv=dv, group=iv, method='levene')
+        is_equal_var = levene_res['equal_var'][0]
+        levene_p = levene_res['pval'][0]
+        
+        test_used = ""
+        f_val = 0
+        p_val = 0
+        is_sig = False
+        posthoc_method = "無"
+        
+        # Step 2 & 3: 根據同質性結果決定分析路徑
+        if is_equal_var:
+            # 路徑 A: 符合同質性 -> Standard ANOVA
+            test_used = "Standard ANOVA"
+            anova_res = pg.anova(data=df, dv=dv, between=iv)
+            f_val = anova_res['F'][0]
+            p_val = anova_res['p-unc'][0]
+            
+            if p_val < 0.05:
+                is_sig = True
+                posthoc_method = "Scheffé (Tukey替代)" # 註: pingouin 用 tukey 實作最方便
+                # 實務上這裡可以把事後比較的結果存入另一個 list 或 dict，這裡簡化標示
+                
+        else:
+            # 路徑 B: 違反同質性 -> Welch's ANOVA
+            test_used = "Welch's ANOVA"
+            welch_res = pg.welch_anova(data=df, dv=dv, between=iv)
+            f_val = welch_res['F'][0]
+            p_val = welch_res['p-unc'][0]
+            
+            if p_val < 0.05:
+                is_sig = True
+                posthoc_method = "Games-Howell"
+        
+        # 將單次分析結果記錄下來
+        summary_results.append({
+            '依變項 (管教方式)': dv,
+            '自變項 (類別)': iv,
+            '同質性假設': '符合' if is_equal_var else '違反',
+            '使用檢定法': test_used,
+            'F 統計量': round(f_val, 3),
+            'P 值': round(p_val, 4),
+            '是否顯著差異 (p<0.05)': '⭐ 是' if is_sig else '否',
+            '事後比較法': posthoc_method
+        })
+
+# ==========================================
+# 3. 輸出並檢視最終報表
+# ==========================================
+results_df = pd.DataFrame(summary_results)
+
+print(f"總共完成 {len(results_df)} 次分析。以下為前 10 筆結果摘要：\n")
+print(results_df.head(10).to_string(index=False))
+
+# 您可以將此結果匯出成 Excel，方便貼上論文：
+# results_df.to_excel('ANOVA_8x5_分析結果總表.xlsx', index=False)
+
+```
+
+### 📝 報表欄位說明
+
+執行這段程式碼後，您會得到一張擁有 40 列資料的 DataFrame（或 Excel 表格），每個欄位的意思如下：
+
+1. **依變項 & 自變項**：清楚標示當下這行是在看哪一組變數的配對。
+2. **同質性假設**：程式會自動判斷該配對是「符合」還是「違反」。
+3. **使用檢定法**：程式根據同質性結果，自動填入 `Standard ANOVA` 或 `Welch's ANOVA`。
+4. **P 值 & 是否顯著**：幫您標示出 $p < 0.05$ 的配對，加上星星符號（⭐），讓您能一眼看出這 40 組中有哪些具有顯著差異。
+5. **事後比較法**：若無顯著差異則顯示「無」，若有顯著差異則自動標示應該對應去看哪一種事後比較的報表。
