@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>教室 Location-Based AR 抓寶</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    
+    <style>
+        /* HUD 計分板與資訊顯示 */
+        #hud {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: sans-serif;
+            font-size: 13px;
+            line-height: 1.5;
+            pointer-events: none; /* 讓點擊事件穿透 */
+            max-width: 240px;
+        }
+        #hud h2 {
+            margin: 0 0 5px 0;
+            color: #4df3a9;
+            font-size: 16px;
+        }
+        .section-title {
+            color: #f3ad4d;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        /* 螢幕中央準星 (Gaze Cursor) 的視覺提示 */
+        .reticle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border: 2px solid white;
+            border-radius: 50%;
+            z-index: 10;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body style="margin: 0; overflow: hidden;">
+
+    <div id="hud">
+        <h2>AR 寶可夢訓練家</h2>
+        <div>學號末四碼: <span id="student-id">2012</span></div> <div>目前得分: <span id="score" style="color: #4df3a9; font-weight: bold;">0</span> 分</div>
+        
+        <hr style="border-color: #555; margin: 8px 0;">
+        
+        <div class="section-title">📍 初始化手機 GPS 讀值：</div>
+        <div style="font-size: 11px; color: #aaa;">
+            緯度 (Lat): <span id="init-lat" style="color: #fff;">定位中...</span><br>
+            經度 (Lng): <span id="init-lng" style="color: #fff;">定位中...</span>
+        </div>
+
+        <hr style="border-color: #555; margin: 8px 0;">
+        
+        <div class="section-title">✨ 補獲時手機位置：</div>
+        <div style="font-size: 11px; color: #aaa;">
+            緯度 (Lat): <span id="capture-lat" style="color: #fff;">-</span><br>
+            經度 (Lng): <span id="capture-lng" style="color: #fff;">-</span>
+        </div>
+    </div>
+
+    <div class="reticle"></div>
+
+    <a-scene 
+        vr-mode-ui="enabled: false"
+        embedded
+        arjs="sourceType: webcam; debugUIEnabled: false;">
+        
+        <a-assets>
+            <a-assets>
+            <a-asset-item id="pokemon1-obj" src="bulb.obj"></a-asset-item>
+            <a-asset-item id="pokemon1-mtl" src="bulb.mtl"></a-asset-item>
+            
+            <a-asset-item id="pokemon2-obj" src="cder.obj"></a-asset-item>
+            <a-asset-item id="pokemon2-mtl" src="cder.mtl"></a-asset-item>
+            
+            <a-asset-item id="pokemon3-obj" src="ceon.obj"></a-asset-item>
+            <a-asset-item id="pokemon3-mtl" src="ceon.mtl"></a-asset-item>
+            
+            <a-asset-item id="pokemon4-obj" src="ha.obj"></a-asset-item>
+            <a-asset-item id="pokemon4-mtl" src="ha.mtl"></a-asset-item>
+        </a-assets>
+        </a-assets>
+
+        <a-camera gps-camera rotation-reader>
+            <a-cursor 
+                id="fuse-cursor"
+                fuse="true" 
+                fuse-timeout="1000"
+                raycaster="objects: .catchable"
+                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                material="color: #4df3a9; shader: flat"
+                position="0 0 -1"
+                animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1000; from: 1 1 1; to: 0.1 0.1 0.1"
+                animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 200; to: 1 1 1">
+            </a-cursor>
+            <a-obj-model position="2 0 -2" src="#pokemon1-obj" mtl="#pokemon1-mtl"></a-obj-model>
+
+        </a-camera>
+
+        <a-entity id="pokemon-group"></a-entity>
+
+    </a-scene>
+
+    <script>
+        // 1. 基礎參數設定 (題目指定之教室中央參考點)
+        const CENTER_LAT = 25.081388; 
+        const CENTER_LNG = 121.396651; 
+        let score = 0;
+
+        // 地球半徑與經緯度轉換常數 (用於計算 5 公尺的經緯度偏移量)
+        const METER_TO_LAT = 1 / 111111; 
+        const METER_TO_LNG = 1 / (111111 * Math.cos(CENTER_LAT * Math.PI / 180));
+        const DISTANCE = 5; 
+
+        // 2. 定義 8 個方位的偏移係數 與 4 種模型對應
+        const directions = [
+            { name: "前", latMod: 1, lngMod: 0, model: "#pokemon1-obj", mtl: "#pokemon1-mtl" },
+            { name: "後", latMod: -1, lngMod: 0, model: "#pokemon1-obj", mtl: "#pokemon1-mtl" },
+            { name: "右", latMod: 0, lngMod: 1, model: "#pokemon2-obj", mtl: "#pokemon2-mtl" },
+            { name: "左", latMod: 0, lngMod: -1, model: "#pokemon2-obj", mtl: "#pokemon2-mtl" },
+            { name: "右前", latMod: 0.707, lngMod: 0.707, model: "#pokemon3-obj", mtl: "#pokemon3-mtl" },
+            { name: "左前", latMod: 0.707, lngMod: -0.707, model: "#pokemon3-obj", mtl: "#pokemon3-mtl" },
+            { name: "右後", latMod: -0.707, lngMod: 0.707, model: "#pokemon4-obj", mtl: "#pokemon4-mtl" },
+            { name: "左後", latMod: -0.707, lngMod: -0.707, model: "#pokemon4-obj", mtl: "#pokemon4-mtl" }
+        ];
+
+        // 3. 當網頁載入完成，立刻讀取手機「初始 GPS 讀值」
+        document.addEventListener('DOMContentLoaded', () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        // 成功取得當前精確位置，更新至 HUD 欄位
+                        document.getElementById('init-lat').innerText = position.coords.latitude.toFixed(6);
+                        document.getElementById('init-lng').innerText = position.coords.longitude.toFixed(6);
+                    },
+                    (error) => {
+                        console.error('無法取得初始 GPS:', error);
+                        document.getElementById('init-lat').innerText = "拒絕存取/無法定位";
+                        document.getElementById('init-lng').innerText = "拒絕存取/無法定位";
+                    },
+                    { enableHighAccuracy: true } // 請求高精確度度
+                );
+            } else {
+                document.getElementById('init-lat').innerText = "不支援 GPS";
+                document.getElementById('init-lng').innerText = "不支援 GPS";
+            }
+            
+            // 初始化部署寶可夢
+            initPokemonDeployment();
+        });
+
+        // 4. 批量生成並部署寶可夢實體
+        function initPokemonDeployment() {
+            const sceneGroup = document.getElementById('pokemon-group');
+
+            directions.forEach((dir) => {
+                // 以設定好的教室經緯度為基準，向外推 5 公尺
+                const targetLat = CENTER_LAT + (dir.latMod * DISTANCE * METER_TO_LAT);
+                const targetLng = CENTER_LNG + (dir.lngMod * DISTANCE * METER_TO_LNG);
+
+                const pokemon = document.createElement('a-entity');
+                pokemon.setAttribute('gps-entity-place', `latitude: ${targetLat}; longitude: ${targetLng};`);
+                pokemon.setAttribute('obj-model', `obj: ${dir.model}; mtl: ${dir.mtl}`);
+                pokemon.setAttribute('class', 'catchable'); 
+                pokemon.setAttribute('scale', '1 1 1');   
+                
+                // 監聽 Gaze 1 秒後的 click 事件
+                pokemon.addEventListener('click', function () {
+                    capturePokemon(pokemon);
+                });
+
+                sceneGroup.appendChild(pokemon);
+            });
+        }
+
+        // 5. 捕捉機制與動畫特效
+        function capturePokemon(element) {
+            if (element.classList.contains('captured')) return;
+            element.classList.remove('catchable');
+            element.classList.add('captured');
+
+            // 取得捕捉當下的手機即時 GPS 座標
+            navigator.geolocation.getCurrentPosition((position) => {
+                document.getElementById('capture-lat').innerText = position.coords.latitude.toFixed(6);
+                document.getElementById('capture-lng').innerText = position.coords.longitude.toFixed(6);
+            }, (err) => {
+                document.getElementById('capture-lat').innerText = "讀取失敗";
+                document.getElementById('capture-lng').innerText = "讀取失敗";
+            }, { enableHighAccuracy: true });
+
+            // 更新計分板
+            score += 10;
+            document.getElementById('score').innerText = score;
+
+            // 特效：閃光 (變白) 與 縮放旋轉消失
+            element.setAttribute('material', 'shader: flat; color: #ffffff; emissive: #ffffff');
+            element.setAttribute('animation__shrink', {
+                property: 'scale',
+                to: '0 0 0',
+                dur: 800,
+                easing: 'easeInBack'
+            });
+            element.setAttribute('animation__spin', {
+                property: 'rotation',
+                to: '0 360 0',
+                dur: 800,
+                easing: 'linear'
+            });
+
+            // 動畫結束後徹底移除
+            setTimeout(() => {
+                if(element.parentNode) {
+                    element.parentNode.removeChild(element);
+                }
+            }, 850);
+        }
+    </script>
+</body>
+</html>

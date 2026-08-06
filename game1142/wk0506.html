@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>092012wk0506 MouseEner tag</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene>
+        <a-entity camera look-controls>
+            <a-cursor></a-cursor>
+        </a-entity>
+
+        <a-box position="-1 0.5 -3" color="#4CC3D9"
+            animation__hover="property: color; to: #FF0000; startEvents: mouseenter; dur: 200"
+            animation__leave="property: color; to: #4CC3D9; startEvents: mouseleave; dur: 200">
+        </a-box>
+    </a-scene>
+</body>
+
+</html>

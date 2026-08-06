@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene shadow="type: pcfsoft">
+        <a-entity camera look-controls position="0 1.6 0">
+            <a-cursor color="yellow"></a-cursor>
+        </a-entity>
+        <a-entity light="type: ambient; color: #444"></a-entity>
+
+        <a-entity id="dLight" light="type: directional; intensity: 0.6; castShadow: true" position="-5 3 1"></a-entity>
+
+
+        <a-cylinder id="myCyl" height="3" radius="0.1" position="0 0.5 -3" color="#4CC3D9"
+            shadow="cast: true; receive: true"></a-cylinder>
+
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"
+            shadow="receive: true"></a-plane>
+
+        <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+    <script>
+        const dLight = document.querySelector('#dLight');
+        const cylEl = document.querySelector('#myCyl');
+
+        cylEl.addEventListener('click', () => {
+            // 1. 先取得目前的位置屬性
+            let currentPos = dLight.getAttribute('position');
+
+            // 2. 更新數值並寫回
+            dLight.setAttribute('position', {
+                x: currentPos.x + 1,
+                y: currentPos.y,
+                z: currentPos.z
+            });
+        });
+    </script>
+</body>
+
+</html>

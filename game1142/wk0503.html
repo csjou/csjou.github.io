@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>092012 wK0503 layout code</title>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+</head>
+
+<body>
+
+  <script>
+    /**
+     * 模擬 WinForm 的初始化機制
+     */
+    function InitializeComponent() {
+      // 1. 建立 Scene (相當於 Form 本體)
+      const scene = document.createElement('a-scene');
+
+      // 2. 建立 Box (方塊)
+      for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 5; j++) {
+          // 計算 x：從 -5 開始，每次增加 2.5
+          let x = -5 + (i * 2.5);
+          let y = -5 + (j * 2.5)
+          const box = document.createElement('a-box');
+          box.setAttribute('position', x + ' ' + y + ' -3');
+          box.setAttribute('rotation', '0 45 0');
+          box.setAttribute('scale', '0.1 0.1 0.1');
+          box.setAttribute('color', '#4CC3D9');
+          scene.appendChild(box);
+        }
+      }
+
+      // 3. 建立 Sphere (球體)
+      for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 5; j++) {
+
+          // 計算 x：從 -5 開始，每次增加 2.5
+          let y = -5 + (i * 2.5);
+          let z = -5 + (j * 2.5);
+          const sphere = document.createElement('a-sphere');
+          sphere.setAttribute('position', '0 ' + y + ' ' + z);
+          sphere.setAttribute('radius', '0.125');
+          sphere.setAttribute('color', '#EF2D5E');
+          scene.appendChild(sphere);
+        }
+      }
+
+      // 4. 建立 Cylinder (圓柱體)
+      for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 5; j++) {
+          // 計算 x：從 -5 開始，每次增加 2.5
+          let z = -5 + (i * 2.5);
+          let x = -5 + (j * 2.5);
+          const cylinder = document.createElement('a-cylinder');
+          cylinder.setAttribute('position', x + ' 0.75 ' + z);
+          cylinder.setAttribute('radius', '0.05');
+          cylinder.setAttribute('height', '0.15');
+          cylinder.setAttribute('color', '#FFC65D');
+          scene.appendChild(cylinder);
+        }
+      }
+
+      // 5. 建立 Plane (地板)
+      const plane = document.createElement('a-plane');
+      plane.setAttribute('position', '0 0 -4');
+      plane.setAttribute('rotation', '-90 0 0');
+      plane.setAttribute('width', '4');
+      plane.setAttribute('height', '4');
+      plane.setAttribute('color', '#7BC8A4');
+      scene.appendChild(plane);
+
+      // 6. 建立 Sky (背景色)
+      const sky = document.createElement('a-sky');
+      sky.setAttribute('color', '#ECECEC');
+      scene.appendChild(sky);
+
+      // 最後將整個場景掛載到 body
+      document.body.appendChild(scene);
+    }
+
+    // 當頁面載入時執行初始化
+    window.onload = InitializeComponent;
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>周重石wk0607</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <style>
+        /* 簡單的播放按鈕樣式 */
+        #playButton {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 999;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="playButton">點擊開始播放</button>
+
+    <a-scene>
+        <a-assets>
+            <video id="myvideo" src="mov_bbb.mp4" preload="auto" loop="true" crossorigin="anonymous" playsinline
+                webkit-playsinline muted>
+            </video>
+        </a-assets>
+        <a-entity position="0 1.6 -3"
+            animation="property: rotation; from: 0 0 0; to: 360 0 0; dur: 8000; easing: linear; loop: true">
+        <a-box id="video-box" position="0 0 0" src="#myvideo" color="white"
+            material="shader: flat; emissive: white; emissiveIntensity: 0.5;"
+            animation__roty="property: rotation; from: 0 0 0; to: 0 360 0; dur: 3000; easing: linear; loop: true">
+        </a-box>
+        </a-entity>
+        <a-sky color="#222"></a-sky>
+        <a-entity camera look-controls></a-entity>
+    </a-scene>
+    <script>
+        // 5. JavaScript：在使用者點擊按鈕後啟動影片
+        document.getElementById('playButton').addEventListener('click', function () {
+            var v = document.querySelector('#myvideo');
+            v.play(); // 播放影片
+            this.style.display = 'none'; // 隱藏按鈕
+        });
+    </script>
+</body>
+
+</html>

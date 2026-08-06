@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>A-Frame 7彩圓球環狀排列</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+  </head>
+  <body>
+    <a-scene background="color: #111">
+      
+      <a-entity layout="type: circle; radius: 4; plane: xz" position="0 1.5 -5">
+        
+        <a-sphere color="red" radius="0.5"></a-sphere>
+        <a-box color="orange"></a-box>
+        <a-sphere color="yellow" radius="0.5"></a-sphere>
+        <a-box color="green"></a-box>
+        <a-sphere color="#0000FF" radius="0.5"></a-sphere>
+        <a-box color="#4B0082"></a-box>
+        <a-sphere color="#8B00FF" radius="0.5"></a-sphere>
+        
+      </a-entity>
+
+      <a-cylinder position="0 0.1 -5" radius="0.1" height="0.2" color="white"></a-cylinder>
+
+      <a-sky color="#222"></a-sky>
+      <a-camera position="0 5 2" rotation="-30 0 0"></a-camera>
+    </a-scene>
+  </body>
+</html>

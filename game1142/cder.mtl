@@ -1,0 +1,28 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl _auto_5
+Ka 0.000000 0.000000 0.000000
+Kd 0.737255 0.482353 0.364706
+Ks 0.330000 0.330000 0.330000
+map_Kd cder/_auto_5.png
+
+newmtl _auto_6
+Ka 0.000000 0.000000 0.000000
+Kd 0.874510 0.690196 0.537255
+Ks 0.330000 0.330000 0.330000
+map_Kd cder/_auto_6.png
+
+newmtl _auto_7
+Ka 0.000000 0.000000 0.000000
+Kd 0.482353 0.482353 0.482353
+Ks 0.330000 0.330000 0.330000
+map_Kd cder/_auto_7.png
+
+newmtl _auto_8
+Ka 0.000000 0.000000 0.000000
+Kd 0.262745 0.262745 0.262745
+Ks 0.330000 0.330000 0.330000
+map_Kd cder/_auto_8.png
+

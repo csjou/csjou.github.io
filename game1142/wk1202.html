@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>周重石 wk1202 A-Frame 高階動態火柴人</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene background="color: #F0F0F0">
+
+        <a-plane position="0 0 0" rotation="-90 0 0" width="20" height="20" color="#999"></a-plane>
+        <a-sky color="#87CEEB"></a-sky>
+
+        <a-entity id="stickman" rotation="0 45 0" position="0 0 -4"
+                  animation="property: position; from: 0 0 -4; to: 0 0.08 -4; dir: alternate; dur: 350; loop: true; easing: easeInOutQuad">
+
+            <a-cylinder position="0 1.1 0" radius="0.05" height="0.8" color="#222"></a-cylinder>
+
+            <a-entity id="neck-joint" position="0 1.5 0"
+                      animation="property: rotation; from: -5 0 -2; to: 5 0 2; dir: alternate; dur: 700; loop: true; easing: easeInOutSine">
+                <a-sphere position="0 0.25 0" radius="0.18" color="#222"></a-sphere>
+            </a-entity>
+
+            <a-entity id="right-shoulder" position="0.12 1.4 0"
+                      animation="property: rotation; from: -30 0 0; to: 30 0 0; dir: alternate; dur: 700; loop: true; easing: easeInOutQuad">
+                <a-cylinder position="0 -0.2 0" radius="0.03" height="0.4" color="#222"></a-cylinder>
+                <a-entity id="right-elbow" position="0 -0.4 0"
+                          animation="property: rotation; from: 0 0 0; to: 45 0 0; dir: alternate; dur: 700; loop: true; easing: easeInOutQuad">
+                    <a-cylinder position="0 -0.2 0" radius="0.03" height="0.4" color="#444"></a-cylinder>
+                </a-entity>
+            </a-entity>
+
+            <a-entity id="left-shoulder" position="-0.12 1.4 0"
+                      animation="property: rotation; from: 30 0 0; to: -30 0 0; dir: alternate; dur: 700; loop: true; easing: easeInOutQuad">
+                <a-cylinder position="0 -0.2 0" radius="0.03" height="0.4" color="#222"></a-cylinder>
+                <a-entity id="left-elbow" position="0 -0.4 0"
+                          animation="property: rotation; from: 45 0 0; to: 0 0 0; dir: alternate; dur: 700; loop: true; easing: easeInOutQuad">
+                    <a-cylinder position="0 -0.2 0" radius="0.03" height="0.4" color="#444"></a-cylinder>
+                </a-entity>
+            </a-entity>
+
+            <a-entity id="right-hip" position="0.12 0.75 0"
+                      animation="property: rotation; from: 35 0 0; to: -30 0 0; dir: alternate; dur: 700; loop: true; easing: easeInOutQuad">
+                <a-cylinder position="0 -0.25 0" radius="0.04" height="0.5" color="#222"></a-cylinder>
+                <a-entity id="right-knee" position="0 -0.5 0"
+                          animation="property: rotation; from: -50 0 0; to: 0 0 0; dir: alternate; dur: 700; loop: true; easing: easeInOutQuad">
+                    <a-cylinder position="0 -0.25 0" radius="0.04" height="0.5" color="#444"></a-cylinder>
+                </a-entity>
+            </a-entity>
+
+            <a-entity id="left-hip" position="-0.12 0.75 0"
+                      animation="property: rotation; from: -30 0 0; to: 35 0 0; dir: alternate; dur: 700; loop: true; easing: easeInOutQuad">
+                <a-cylinder position="0 -0.25 0" radius="0.04" height="0.5" color="#222"></a-cylinder>
+                <a-entity id="left-knee" position="0 -0.5 0"
+                          animation="property: rotation; from: 0 0 0; to: -50 0 0; dir: alternate; dur: 700; loop: true; easing: easeInOutQuad">
+                    <a-cylinder position="0 -0.25 0" radius="0.04" height="0.5" color="#444"></a-cylinder>
+                </a-entity>
+            </a-entity>
+
+        </a-entity>
+
+        <a-entity position="2 1.6 0" rotation="0 90 0">
+            <a-camera></a-camera>
+        </a-entity>
+
+    </a-scene>
+</body>
+</html>

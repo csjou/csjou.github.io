@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>周重石 wk1206 A-Frame GLB Material Color Change</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+    <style>
+        .ui-panel {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #fff;
+            border: 2px solid #333;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ui-panel">
+        <button id="color-btn">換顏色 (隨機)</button>
+    </div>
+
+    <a-scene background="color: #ECECEC">
+        <a-assets>
+            <a-asset-item id="fox" src="Fox.glb"></a-asset-item>
+        </a-assets>
+
+        <a-entity id="fox-model"
+                  gltf-model="#fox"
+                  scale="0.02 0.02 0.02"
+                  position="0 0 -2"
+                  animation-mixer="clip: Survey">
+        </a-entity>
+
+        <a-grid></a-grid>
+        <a-light type="ambient" intensity="0.7"></a-light>
+        <a-light type="directional" position="-1 2 1" intensity="0.5"></a-light>
+        <a-camera position="0 1.6 1"></a-camera>
+    </a-scene>
+
+    <script>
+      const foxEl = document.querySelector('#fox-model');
+      const btn = document.querySelector('#color-btn');
+
+      // 定義變色函數
+      function changeModelColor() {
+        // 產生隨機顏色
+        const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+        console.log("正在將模型變為: " + randomColor);
+
+        // 重要：獲取模型的 3D 物件根節點
+        const model = foxEl.getObject3D('mesh');
+
+        if (model) {
+          // 遍歷所有子物件
+          model.traverse((node) => {
+            // 只針對類型是 Mesh 的物件進行修改
+            if (node.isMesh) {
+              // 1. 如果你只想改顏色，保留原始貼圖：
+              node.material.color.set(randomColor);
+
+              // 2. 如果模型原本有貼圖（Texture），顏色會跟貼圖混合。
+              // 若要顏色非常明顯，可以調整渲染屬性：
+              node.material.needsUpdate = true;
+            }
+          });
+        } else {
+          console.log("模型尚未加載完成！");
+        }
+      }
+
+      // 監聽按鈕點擊 (手機與電腦通用)
+      btn.addEventListener('click', changeModelColor);
+
+      // 監聽空白鍵
+      window.addEventListener('keydown', (e) => {
+        if (e.code === 'Space') changeModelColor();
+      });
+
+      // 注意：GLB 載入需要時間，如果一進網頁就執行可能抓不到物件
+      foxEl.addEventListener('model-loaded', () => {
+        console.log("Fox 模型已載入，現在可以變色了！");
+      });
+    </script>
+</body>
+</html>

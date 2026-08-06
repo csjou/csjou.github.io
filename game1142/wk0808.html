@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.3.7/dist/aframe-environment-component.min.js"></script>
+    <style>
+      #ui-hint {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        font-family: sans-serif;
+        background: rgba(0,0,0,0.5);
+        padding: 10px 20px;
+        border-radius: 20px;
+        pointer-events: none;
+        z-index: 100;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="ui-hint">點擊畫面切換環境</div>
+
+    <a-scene>
+      <a-entity id="my-env" environment="preset: forest"></a-entity>
+
+      <a-entity id="box-container"></a-entity>
+
+      <a-camera position="0 1.6 3">
+        <a-cursor visible="false"></a-cursor>
+      </a-camera>
+    </a-scene>
+
+    <script>
+      // 1. 定義環境清單 (排除 yosemite 與 mountain)
+      const environments = [
+        'forest', 'volcano', 'arches', 
+        'dream', 'starry', 'osiris', 'tron'
+      ];
+      let currentIndex = 0;
+
+      window.addEventListener('DOMContentLoaded', () => {
+        const envEntity = document.querySelector('#my-env');
+        const container = document.querySelector('#box-container');
+        const hint = document.querySelector('#ui-hint');
+
+        // --- 初始化：生成 36 個旋轉變色方塊 ---
+        for (let i = 0; i < 36; i++) {
+          let th = i * 10;
+          let rad = th * (Math.PI / 180);
+          let posX = 5 * Math.cos(rad);
+          let posZ = 5 * Math.sin(rad);
+
+          const box = document.createElement('a-box');
+          box.setAttribute('width', '0.2');
+          box.setAttribute('height', '0.2');
+          box.setAttribute('depth', '0.2');
+          box.setAttribute('position', '0 1.6 0');
+
+          // 複合動畫：位移、旋轉、變色
+          box.setAttribute('animation__move', `property: position; to: ${posX} 1.6 ${posZ}; dur: 2000; loop: true; dir: alternate; easing: easeInOutQuad`);
+          box.setAttribute('animation__rotate', `property: rotation; to: 360 360 0; dur: 2000; loop: true; dir: alternate; easing: easeInOutQuad`);
+          box.setAttribute('animation__color', `property: material.color; from: yellow; to: green; dur: 1000; loop: true; dir: alternate`);
+
+          container.appendChild(box);
+        }
+
+        // --- 點擊事件：切換環境 ---
+        window.addEventListener('click', () => {
+          currentIndex = (currentIndex + 1) % environments.length;
+          const nextPreset = environments[currentIndex];
+          
+          // 更新環境組件屬性
+          envEntity.setAttribute('environment', {
+            preset: nextPreset,
+            // 為了確保 tron 或 starry 不會太暗，可以補一些基礎設定
+            dressingAmount: nextPreset === 'tron' ? 0 : 100,
+            grid: nextPreset === 'tron' ? 'lines' : 'none'
+          });
+
+          // 更新提示文字
+          hint.innerText = `目前環境: ${nextPreset.toUpperCase()}`;
+          console.log(`已切換至: ${nextPreset}`);
+        });
+      });
+    </script>
+  </body>
+</html>

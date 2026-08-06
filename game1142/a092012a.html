@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <title> a092012a</title>
+  <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+</head>
+
+<body style="margin: 0; overflow: hidden;">
+  <a-scene>
+    <a-assets>
+      <!-- 使用 Mixin 集中管理屬性 -->
+      <a-mixin id="myCube" geometry="primitive: box" material="color: #4CC3D9" scale="1 1 1"></a-mixin>
+    </a-assets>
+
+    <a-sky color="#ECECEC"></a-sky>
+    <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+
+    <!-- 套用 Mixin 並指定位置 -->
+    <a-entity mixin="myCube" position="-2 0.5 -3" ></a-entity>
+    <a-entity mixin="myCube" position="0 0.5 -3"></a-entity>
+    <a-entity mixin="myCube" position="2 0.5 -3" color="green"></a-entity>
+  </a-scene>
+
+</body>
+
+</html>

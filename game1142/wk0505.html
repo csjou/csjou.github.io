@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>A-Frame Animation (WinForm Style)</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+  </head>
+  <body>
+
+    <script>
+      function InitializeComponent() {
+        const scene = document.createElement('a-scene');
+        
+        // --- 1. 相機與游標 (互動媒介) ---
+        const cameraEntity = document.createElement('a-entity');
+        cameraEntity.setAttribute('camera', '');
+        cameraEntity.setAttribute('look-controls', '');
+        cameraEntity.setAttribute('position', '0 1.6 0');
+
+        const cursor = document.createElement('a-cursor');
+        cameraEntity.appendChild(cursor);
+        scene.appendChild(cameraEntity);
+
+        // --- 2. Box: 點擊後「單次」旋轉 ---
+        const box = document.createElement('a-box');
+        box.setAttribute('position', '-1 0.5 -3');
+        box.setAttribute('color', '#4CC3D9');
+        // 設定動畫屬性：監聽 'click' 事件觸發，旋轉到 0 405 0 (增加 360 度)
+        box.setAttribute('animation__click', {
+          property: 'rotation',
+          from: '0 45 0',
+          to: '0 405 0',
+          dur: 1000,
+          startEvents: 'click'
+          
+        });
+        scene.appendChild(box);
+
+        // --- 3. Sphere: 點擊後「彈跳」縮放 ---
+        const sphere = document.createElement('a-sphere');
+        sphere.setAttribute('position', '0 1.25 -5');
+        sphere.setAttribute('radius', '1.25');
+        sphere.setAttribute('color', '#EF2D5E');
+        // 設定動畫：點擊後變大再變回原狀 (dir: alternate)
+        sphere.setAttribute('animation__scale', {
+          property: 'scale',
+          to: '1.2 1.2 1.2',
+          dur: 300,
+          startEvents: 'click',
+          dir: 'alternate',
+          loop: 1
+        });
+        scene.appendChild(sphere);
+
+        // --- 4. Cylinder: 自動「循環」浮動 ---
+        const cylinder = document.createElement('a-cylinder');
+        cylinder.setAttribute('position', '1 0.75 -3');
+        cylinder.setAttribute('radius', '0.5');
+        cylinder.setAttribute('height', '1.5');
+        cylinder.setAttribute('color', '#FFC65D');
+        // 設定動畫：不需事件，自動無限循環上下浮動
+        cylinder.setAttribute('animation__float', {
+          property: 'position',
+          to: '1 1.25 -3',
+          dur: 2000,
+          dir: 'alternate',
+          loop: true,
+          easing: 'easeInOutSine'
+        });
+        scene.appendChild(cylinder);
+
+        // 地板與天空
+        const plane = document.createElement('a-plane');
+        plane.setAttribute('position', '0 0 -4');
+        plane.setAttribute('rotation', '-90 0 0');
+        plane.setAttribute('width', '4');
+        plane.setAttribute('height', '4');
+        plane.setAttribute('color', '#7BC8A4');
+        scene.appendChild(plane);
+
+        const sky = document.createElement('a-sky');
+        sky.setAttribute('color', '#ECECEC');
+        scene.appendChild(sky);
+
+        document.body.appendChild(scene);
+      }
+
+      window.onload = InitializeComponent;
+    </script>
+    
+  </body>
+</html>

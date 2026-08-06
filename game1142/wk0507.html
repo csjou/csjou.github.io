@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>092012wk0506 MouseEner tag</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+
+</head>
+
+<body>
+    <a-scene>
+        <a-entity camera look-controls>
+            <a-cursor></a-cursor>
+        </a-entity>
+
+        <a-box position="-1 0.5 -3" color="#4CC3D9">
+
+        </a-box>
+</body>
+<script>
+    // 假設你已經建立或選取了 box
+    const box = document.querySelector('a-box');
+
+    // 監聽滑鼠移入 (Mouse Enter)
+    box.addEventListener('mouseenter', function () {
+        // 放大方塊
+        this.setAttribute('scale', '1.2 1.2 1.2');
+        console.log('滑鼠進來了！');
+    });
+
+    // 監聽滑鼠移出 (Mouse Leave)
+    box.addEventListener('mouseleave', function () {
+        // 恢復原始大小
+        this.setAttribute('scale', '1 1 1');
+        // 直接設為 false，方塊就會消失
+        this.setAttribute('visible', false);
+        console.log('滑鼠離開了！');
+    });
+</script>
+
+</html>

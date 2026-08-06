@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>AR 按鈕與雙視窗互動</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+    <script>
+      AFRAME.registerComponent('click-handler', {
+        init: function () {
+          var el = this.el; // 取得按鈕元素本身
+          var clickCount = 0;
+
+          // 抓取畫面上兩個視窗的文字標籤
+          var nonFloatingText = document.querySelector('#non-floating-text');
+          var floatingText = document.querySelector('#floating-text');
+
+          // 監聽點擊事件
+          el.addEventListener('click', function () {
+            clickCount++;
+
+            // 更新非浮動視窗文字
+            nonFloatingText.setAttribute('value', 'Status: Clicked!\nTotal: ' + clickCount);
+
+            // 更新浮動視窗文字
+            floatingText.setAttribute('value', 'HUD: Button Clicked!\nTotal: ' + clickCount);
+
+            // 按鈕點擊時的視覺回饋（閃爍一下紅色）
+            el.setAttribute('color', '#FF5722');
+            setTimeout(function() {
+              el.setAttribute('color', '#FFC65D'); // 恢復原本的黃色
+            }, 150);
+          });
+        }
+      });
+    </script>
+</head>
+
+<body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" cursor="rayOrigin: mouse" raycaster="objects: .clickable">
+
+        <a-box id="button" class="clickable" click-handler
+               color="#FFC65D"
+               width="0.6" height="0.4" depth="0.4"
+               position="-0.3 0.5 -5">
+        </a-box>
+
+
+        <a-entity position="0.5 0.5 -5">
+            <a-plane width="1.2" height="0.6" color="#222" opacity="0.4"></a-plane>
+            <a-text id="non-floating-text" value="Status: Waiting...\n(Click the yellow box)" align="center" width="2.5" position="0 0 0.01"></a-text>
+        </a-entity>
+
+
+        <a-entity camera look-controls>
+
+            <a-entity position="0 -0.7 -2">
+                <a-plane width="1.2" height="0.5" color="#222" opacity="0.4"></a-plane>
+                <a-text id="floating-text" value="HUD: Ready\n(Always on screen)" align="center" width="2.5" position="0 0 0.01" scale="0.5 0.5 0.5"></a-text>
+            </a-entity>
+
+        </a-entity>
+
+    </a-scene>
+</body>
+</html>

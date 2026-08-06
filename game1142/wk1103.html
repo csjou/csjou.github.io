@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>A-Frame 隨機變色測試</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+
+    <script>
+      // 註冊變色元件
+      AFRAME.registerComponent("random-color-on-click", {
+        init: function () {
+          // 監聽點擊事件
+          this.el.addEventListener("click", (e) => {
+            // 執行隨機變色核心代碼
+            const randomColor = "#" + (Math.random() * 0xFFFFFF << 0).toString(16);
+            this.el.setAttribute("color", randomColor);
+
+            console.log("新顏色:", randomColor);
+          });
+        }
+      });
+    </script>
+</head>
+<body>
+    <a-scene>
+        <a-entity cursor="rayOrigin: mouse"></a-entity>
+
+        <a-sky color="#222"></a-sky>
+
+        <a-box position="0 1.5 -3"
+               color="#4CC3D9"
+               random-color-on-click
+               animation="property: rotation; to: 0 360 0; loop: true; dur: 5000; easing: linear">
+        </a-box>
+
+        <a-text value="Click the Box to Change Color!"
+                position="0 0.5 -3"
+                align="center"
+                color="white">
+        </a-text>
+    </a-scene>
+</body>
+</html>

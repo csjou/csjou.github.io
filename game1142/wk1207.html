@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>周重石 wk1207 A-Frame Fox Racing - 200m Track</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+    <style>
+        .ui-panel {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 999;
+        }
+
+        .info {
+            color: white;
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            font-family: sans-serif;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ui-panel">
+        <div class="info">點擊畫面：切換視角 (俯瞰 / 追蹤)</div>
+    </div>
+
+    <a-scene background="color: #87CEEB">
+        <a-assets>
+            <a-asset-item id="fox" src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Fox/glTF-Binary/Fox.glb"></a-asset-item>
+        </a-assets>
+
+        <a-ring color="#C04000" rotation="-90 0 0" radius-inner="14" radius-outer="31" segments-theta="64"></a-ring>
+        <a-plane position="0 -0.01 0" rotation="-90 0 0" width="100" height="100" color="#7BC8A4"></a-plane>
+
+        <a-entity id="race-container"></a-entity>
+
+        <a-entity id="rig" position="0 1.6 40">
+            <a-camera id="camera" look-controls></a-camera>
+        </a-entity>
+
+        <a-light type="ambient" intensity="0.8"></a-light>
+        <a-light type="directional" position="1 5 1"></a-light>
+    </a-scene>
+
+    <script>
+        const sceneEl = document.querySelector('#race-container');
+        const cameraRig = document.querySelector('#rig');
+        const foxCount = 6;
+        const foxes = [];
+
+        // 橢圓參數
+        const radiusX = 28; // 長軸
+        const radiusZ = 16; // 短軸
+
+        // 1. 初始化 6 隻狐狸
+        for (let i = 0; i < foxCount; i++) {
+            const fox = document.createElement('a-entity');
+            const laneOffset = i * 2; // 每一軌道的間距
+
+            fox.setAttribute('gltf-model', '#fox');
+            fox.setAttribute('scale', '0.02 0.02 0.02');
+            fox.setAttribute('animation-mixer', { clip: 'Run' });
+
+            // 自定義屬性：速度、目前角度、軌道半徑
+            const speed = 0.005 + (Math.random() * 0.01); // 隨機速度
+            foxes.push({
+                el: fox,
+                angle: 0,
+                speed: speed,
+                rX: radiusX - laneOffset,
+                rZ: radiusZ - laneOffset
+            });
+
+            sceneEl.appendChild(fox);
+        }
+
+        // 2. 跑道運動邏輯 (每幀更新)
+        function tick() {
+            foxes.forEach(f => {
+                f.angle += f.speed;
+
+                // 橢圓坐標計算
+                const x = Math.cos(f.angle) * f.rX;
+                const z = Math.sin(f.angle) * f.rZ;
+
+                // 計算切線斜率以決定朝向 (Tangent)
+                const nextX = Math.cos(f.angle + 0.01) * f.rX;
+                const nextZ = Math.sin(f.angle + 0.01) * f.rZ;
+                const rotationY = Math.atan2(x - nextX, z - nextZ) * (180 / Math.PI);
+
+                f.el.setAttribute('position', { x: x, y: 0, z: z });
+                f.el.setAttribute('rotation', { x: 0, y: rotationY + 180, z: 0 });
+            });
+            requestAnimationFrame(tick);
+        }
+        tick();
+
+        // 3. 相機切換邏輯
+        let viewMode = 0; // 0: 側視, 1: 高空俯瞰
+        window.addEventListener('click', () => {
+            viewMode = (viewMode + 1) % 2;
+
+            if (viewMode === 1) {
+                // 俯瞰跑道位置
+                cameraRig.setAttribute('animation', {
+                    property: 'position',
+                    to: '0 60 0',
+                    dur: 1000,
+                    easing: 'easeInOutQuad'
+                });
+                cameraRig.setAttribute('animation__rot', {
+                    property: 'rotation',
+                    to: '-90 0 0',
+                    dur: 1000,
+                    easing: 'easeInOutQuad'
+                });
+            } else {
+                // 回到地面起始視角
+                cameraRig.setAttribute('animation', {
+                    property: 'position',
+                    to: '0 1.6 40',
+                    dur: 1000,
+                    easing: 'easeInOutQuad'
+                });
+                cameraRig.setAttribute('animation__rot', {
+                    property: 'rotation',
+                    to: '0 0 0',
+                    dur: 1000,
+                    easing: 'easeInOutQuad'
+                });
+            }
+        });
+    </script>
+</body>
+</html>

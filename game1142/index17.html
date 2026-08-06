@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D 射擊 Fox 遊戲</title>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+    
+    <style>
+        /* 環境選單 UI 樣式 */
+        #ui-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-family: sans-serif;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff5722;
+            color: white;
+        }
+        button:hover { background-color: #e64a19; }
+        #score-board {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 998;
+            color: white;
+            font-size: 24px;
+            font-family: sans-serif;
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="ui-container">
+        <h2>請選擇戰場環境</h2>
+        <button onclick="startGame('forest')">森林 (Forest)</button>
+        <button onclick="startGame('contact')">科技風 (Contact)</button>
+        <button onclick="startGame('egypt')">埃及沙漠 (Egypt)</button>
+        <button onclick="startGame('goaland')">外星世界 (Goaland)</button>
+        <button onclick="startGame('volcano')">火山 (Volcano)</button>
+    </div>
+
+    <div id="score-board">分數: <span id="score">0</span></div>
+
+    <a-scene>
+        <a-assets>
+            <a-asset-item id="fox-model" src="assets/fox/Fox.gltf"></a-asset-item>
+        </a-assets>
+
+        <a-entity id="game-env" environment="preset: none"></a-entity>
+
+        <a-entity id="camera-rig" position="0 0 0">
+            <a-camera id="player-camera" look-controls wasd-controls="enabled: false">
+                <a-cursor 
+                    id="cursor"
+                    animation__click="property: scale; startEvents: click; easing: easeInCubic; durability: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+                    animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; durability: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+                    event-set__mouseenter="_event: mouseenter; color: springgreen"
+                    event-set__mouseleave="_event: mouseleave; color: black"
+                    raycaster="objects: .targetable">
+                </a-cursor>
+            </a-camera>
+        </a-entity>
+
+        <a-entity type="ambient" color="#fff"></a-entity>
+    </a-scene>
+
+    <script>
+        let score = 0;
+        let gameActive = false;
+        const animations = ['Survey', 'Walk', 'Run'];
+
+        // 初始化與切換環境
+        function startGame(envPreset) {
+            document.getElementById('ui-container').style.display = 'none';
+            document.getElementById('score-board').style.display = 'block';
+            
+            // 設定 A-Frame 環境
+            const env = document.getElementById('game-env');
+            env.setAttribute('environment', `preset: ${envPreset}; seed: 42; lightPosition: 1 5 -2`);
+
+            gameActive = true;
+            // 開始每 3 秒生成一隻 Fox
+            setInterval(spawnFox, 3000);
+        }
+
+        // 動態生成 Fox 的邏輯
+        function spawnFox() {
+            if (!gameActive) return;
+
+            const scene = document.querySelector('a-scene');
+            const fox = document.createElement('a-entity');
+
+            // 1. 隨機決定一隻狐狸的行為 (Survey 觀察 / Walk 走 / Run 跑)
+            const randomAnim = animations[Math.floor(Math.random() * animations.length)];
+            
+            // 2. 隨機在玩家四面八方的圓周上生成 (半徑 15 到 25 公尺)
+            const angle = Math.random() * Math.PI * 2;
+            const distance = Math.random() * 10 + 15; 
+            const posX = Math.cos(angle) * distance;
+            const posZ = Math.sin(angle) * distance;
+            
+            // 設定 Fox 屬性與 3D 模型
+            fox.setAttribute('gltf-model', '#fox-model');
+            fox.setAttribute('position', `${posX} 0 ${posZ}`);
+            fox.setAttribute('scale', '0.02 0.02 0.02'); // 調整適當縮放比
+            fox.setAttribute('class', 'targetable');     // 讓準心可以瞄準
+            
+            // 啟動 gltf 動畫
+            fox.setAttribute('animation-mixer', `clip: ${randomAnim}`);
+
+            // 3. 讓 Fox 朝向原點（玩家手機位置）
+            fox.setAttribute('look-at', '0 0 0'); 
+            // 註：若不想額外引 look-at 套件，可用原生 JS 讓矩陣朝向原點，這裡直接簡單處理 rotation
+            const rotationY = Math.atan2(posX, posZ) * (180 / Math.PI);
+            fox.setAttribute('rotation', `0 ${rotationY + 180} 0`);
+
+            // 4. 設定移動速度
+            let speed = 0;
+            if (randomAnim === 'Walk') speed = 0.02;
+            if (randomAnim === 'Run') speed = 0.06;
+            // Survey 則原地不動 (speed = 0)
+
+            // 5. 每幀更新位置（朝原點前進）
+            if (speed > 0) {
+                const interval = setInterval(() => {
+                    if (!fox.parentNode) { 
+                        clearInterval(interval); 
+                        return; 
+                    }
+                    let currentPos = fox.getAttribute('position');
+                    
+                    // 計算朝向原點的向量
+                    let length = Math.sqrt(currentPos.x * currentPos.x + currentPos.z * currentPos.z);
+                    
+                    if (length > 1) { // 離玩家還有距離就繼續前進
+                        let newX = currentPos.x - (currentPos.x / length) * speed;
+                        let newZ = currentPos.z - (currentPos.z / length) * speed;
+                        fox.setAttribute('position', `${newX} 0 ${newZ}`);
+                    } else {
+                        // 狐狸咬到玩家
+                        clearInterval(interval);
+                        gameOver();
+                    }
+                }, 1000 / 60);
+            }
+
+            // 6. 點擊射擊事件
+            fox.addEventListener('click', function () {
+                // 擊中效果：加分並移除 Fox
+                score += 10;
+                document.getElementById('score').innerText = score;
+                
+                // 簡單的消失動畫效果後移除
+                fox.setAttribute('animation', 'property: scale; to: 0 0 0; duration: 200');
+                setTimeout(() => {
+                    if(fox.parentNode) scene.removeChild(fox);
+                }, 200);
+            });
+
+            scene.appendChild(fox);
+        }
+
+        function gameOver() {
+            gameActive = false;
+            alert(`遊戲結束！您的得分是: ${score}`);
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>

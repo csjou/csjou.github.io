@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手機 GPS 經緯度讀取器</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+        }
+        h2 {
+            color: #1a73e8;
+            margin-top: 0;
+        }
+        .data-box {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 1.1rem;
+            text-align: left;
+        }
+        .data-item {
+            margin: 8px 0;
+            color: #3c4043;
+        }
+        .data-item strong {
+            color: #1a73e8;
+        }
+        button {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 24px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #1557b0;
+        }
+        #mapLink {
+            display: none;
+            margin-top: 15px;
+            color: #34a853;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #status {
+            font-size: 0.9rem;
+            color: #5f6368;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>GPS 定位座標</h2>
+    <p>點擊下方按鈕以獲取您目前的位置</p>
+    
+    <button onclick="getLocation()">取得目前位置</button>
+
+    <div class="data-box">
+        <div class="data-item">緯度 (Latitude): <span id="latitude">--</span></div>
+        <div class="data-item">經度 (Longitude): <span id="longitude">--</span></div>
+        <div class="data-item">準確度 (Accuracy): <span id="accuracy">--</span></div>
+    </div>
+
+    <p id="status"></p>
+    <a id="mapLink" href="#" target="_blank">📍 在 Google 地圖上查看</a>
+</div>
+
+<script>
+function getLocation() {
+    const status = document.getElementById("status");
+    const latText = document.getElementById("latitude");
+    const lonText = document.getElementById("longitude");
+    const accText = document.getElementById("accuracy");
+    const mapLink = document.getElementById("mapLink");
+
+    // 檢查瀏覽器是否支援 Geolocation
+    if (!navigator.geolocation) {
+        status.textContent = "您的瀏覽器不支援地理定位功能。";
+        return;
+    }
+
+    status.textContent = "定位中，請稍候...";
+    
+    // 定位參數設定
+    const options = {
+        enableHighAccuracy: true, // 強制開啟高精準度 (通常會調用手機 GPS 晶片)
+        timeout: 10000,           // 超時時間 10 秒
+        maximumAge: 0             // 不使用快取，每次都抓取最新位置
+    };
+
+    // 成功取得位置的回呼函式
+    function success(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        const accuracy = position.coords.accuracy;
+
+        latText.textContent = latitude.toFixed(6);
+        lonText.textContent = longitude.toFixed(6);
+        accText.textContent = `± ${Math.round(accuracy)} 公尺`;
+        
+        status.textContent = "定位成功！";
+        
+        // 生成 Google 地圖連結
+        mapLink.href = `https://www.google.com/maps?q=${latitude},${longitude}`;
+        mapLink.style.display = "block";
+    }
+
+    // 定位失敗的回呼函式
+    function error(err) {
+        mapLink.style.display = "none";
+        switch(err.code) {
+            case err.PERMISSION_DENIED:
+                status.textContent = "錯誤：使用者拒絕了定位請求。請檢查手機瀏覽器權限。";
+                break;
+            case err.POSITION_UNAVAILABLE:
+                status.textContent = "錯誤：無法取得位置資訊（可能 GPS 訊號不良）。";
+                break;
+            case err.TIMEOUT:
+                status.textContent = "錯誤：定位逾時，請再試一次。";
+                break;
+            default:
+                status.textContent = "發生未知錯誤。";
+                break;
+        }
+    }
+
+    // 執行定位
+    navigator.geolocation.getCurrentPosition(success, error, options);
+}
+</script>
+
+</body>
+</html>

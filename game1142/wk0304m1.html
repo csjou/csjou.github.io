@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>A-Frame Layout 修正版</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+</head>
+<body>
+
+    <a-scene background="color: #222">
+        <a-assets>
+            <script id="boxTemplate" type="text/html">
+                <a-box color="#4CC3D9" width="0.5" height="0.5" depth="0.5"></a-box>
+            </script>
+        </a-assets>
+
+        <a-entity id="forest"
+                  layout="type: line; margin: 1.0" 
+                  position="-2 1.5 -5"
+                  template="src: #boxTemplate" 
+                  data-repeat="5">
+        </a-entity>
+
+        <a-sky color="#ECECEC"></a-sky>
+        <a-light type="ambient" color="#FFF"></a-light>
+        <a-entity camera look-controls position="0 1.6 0"></a-entity>
+    </a-scene>
+
+    <script>
+        // 強制刷新機制：如果 Layout 沒對齊，這段腳本會手動觸發它
+        document.querySelector('#forest').addEventListener('templaterendered', function () {
+            this.components.layout.update();
+        });
+    </script>
+</body>
+</html>

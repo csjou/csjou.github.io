@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>周重石 wk1203 glb File</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <a-assets>
+            <a-asset-item id="fox" src="fox.glb"></a-asset-item>
+        </a-assets>
+
+        <!-- Using the asset management system. -->
+        <a-gltf-model src="#fox" scale="0.01 0.01 0.01" position="-3 0 -5"></a-gltf-model>
+
+        <!-- Defining the URL inline. Not recommended but more comfortable for web developers. -->
+        <a-gltf-model src="fox.glb" scale="0.01 0.01 0.01" position="3 0 -5"></a-gltf-model>
+    </a-scene>
+</body>
+</html>

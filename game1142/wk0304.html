@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>092012 A-Frame Layout & Template 範例</title>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+
+    <a-scene background="color: #222">
+        <a-assets>
+            <script id="boxTemplate" type="text/html">
+                <a-box color="#FFC107" depth="0.5" height="0.5" width="0.5"></a-box>
+            </script>
+        </a-assets>
+
+        <a-entity layout="type: line; margin: 1.5" 
+                  position="-3 1.5 -4"
+                  template="src: #boxTemplate" 
+                  data-repeat="5">
+        </a-entity>
+
+        <a-light type="ambient" color="#BBB"></a-light>
+        <a-light type="directional" color="#FFF" intensity="0.6" position="-0.5 1 1"></a-light>
+        <a-sky color="#ECECEC"></a-sky>
+        <a-entity camera look-controls position="0 1.6 0"></a-entity>
+    </a-scene>
+
+</body>
+</html>

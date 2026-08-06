@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>wk1005 周重石 A-Frame Component 註冊測試</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+
+    <script>
+      // 1. 註冊自定義元件 "hitme"
+      // 注意：這段 script 必須在 <a-scene> 之前定義，或放在 head 裡
+      AFRAME.registerComponent("hitme", {
+        // init 是元件的生命週期函數，當元件被掛載到實體時執行一次
+        init: function () {
+          // this.el 指向掛載了這個元件的那個 HTML 元素
+          this.el.addEventListener("click", () => {
+            alert("你點擊了 ID 為: " + this.el.id + " 的物件！");
+
+            // 延伸：點擊後隨機換色，展示元件的靈活性
+            const colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            this.el.setAttribute('color', randomColor);
+          });
+        }
+      });
+    </script>
+</head>
+<body>
+
+    <a-scene>
+        <a-box id="Box-A" hitme position="-1.5 1.5 -3" color="#EF2D5E"></a-box>
+
+        <a-sphere id="Sphere-B" hitme position="1.5 1.5 -3" radius="0.8" color="#4CC3D9"></a-sphere>
+
+        <a-sky color="#ECECEC"></a-sky>
+
+        <a-entity camera look-controls>
+            <a-entity cursor="rayOrigin: mouse"></a-entity>
+        </a-entity>
+    </a-scene>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>092012 wk0504 A-Frame Interaction (WinForm Style)</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+  </head>
+  <body>
+
+    <script>
+      function InitializeComponent() {
+        const scene = document.createElement('a-scene');
+        
+        // --- 1. 建立相機與游標 (必須有 Cursor 才能點擊) ---
+        const cameraEntity = document.createElement('a-entity');
+        cameraEntity.setAttribute('camera', '');
+        cameraEntity.setAttribute('look-controls', '');
+        cameraEntity.setAttribute('position', '0 1.6 0');
+
+        const cursor = document.createElement('a-cursor'); // 畫面中央的小圓點
+        cameraEntity.appendChild(cursor);
+        scene.appendChild(cameraEntity);
+
+        // --- 2. Box: 點擊後隨機旋轉 ---
+        const box = document.createElement('a-box');
+        box.setAttribute('position', '-1 0.5 -3');
+        box.setAttribute('color', '#4CC3D9');
+        // 事件處理器 (Event Handler)
+        box.addEventListener('click', function () {
+          const randomY = Math.random() * 360;
+          this.setAttribute('rotation', `0 ${randomY} 0`);
+          console.log("Box clicked! New rotation set.");
+        });
+        scene.appendChild(box);
+
+        // --- 3. Sphere: 點擊後變換顏色 ---
+        const sphere = document.createElement('a-sphere');
+        sphere.setAttribute('position', '0 1.25 -5');
+        sphere.setAttribute('radius', '1.25');
+        sphere.setAttribute('color', '#EF2D5E');
+        // 事件處理器
+        sphere.addEventListener('click', function () {
+          const colors = ['orange', 'purple', 'yellow', 'white'];
+          const randomColor = colors[Math.floor(Math.random() * colors.length)];
+          this.setAttribute('color', randomColor);
+        });
+        scene.appendChild(sphere);
+
+        // --- 4. Cylinder: 點擊後切換可見度 (Toggle Visibility) ---
+        const cylinder = document.createElement('a-cylinder');
+        cylinder.setAttribute('position', '1 0.75 -3');
+        cylinder.setAttribute('radius', '0.5');
+        cylinder.setAttribute('height', '1.5');
+        cylinder.setAttribute('color', '#FFC65D');
+        // 事件處理器
+        cylinder.addEventListener('click', function () {
+          const isVisible = this.getAttribute('visible');
+          this.setAttribute('visible', !isVisible);
+          // 為了讓使用者還能點回來，通常會配合動畫或透明度，這裡示範邏輯切換
+          console.log("Cylinder visibility toggled.");
+        });
+        scene.appendChild(cylinder);
+
+        // 地板與天空 (裝飾)
+        const plane = document.createElement('a-plane');
+        plane.setAttribute('position', '0 0 -4');
+        plane.setAttribute('rotation', '-90 0 0');
+        plane.setAttribute('width', '4');
+        plane.setAttribute('height', '4');
+        plane.setAttribute('color', '#7BC8A4');
+        scene.appendChild(plane);
+
+        const sky = document.createElement('a-sky');
+        sky.setAttribute('color', '#ECECEC');
+        scene.appendChild(sky);
+
+        document.body.appendChild(scene);
+      }
+
+      window.onload = InitializeComponent;
+    </script>
+    
+  </body>
+</html>

@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>A-Frame Fox Racing - Colored Tracks</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+    <style>
+        .ui-panel {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 999;
+        }
+
+        .info {
+            color: white;
+            background: rgba(0,0,0,0.7);
+            padding: 15px;
+            font-family: sans-serif;
+            border-radius: 8px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ui-panel">
+        <div class="info">
+            <b>狐狸大賽 200m</b><br>
+            點擊畫面：切換視角 (俯瞰/地面)
+        </div>
+    </div>
+
+    <a-scene background="color: #87CEEB">
+        <a-assets>
+            <a-asset-item id="fox" src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Fox/glTF-Binary/Fox.glb"></a-asset-item>
+        </a-assets>
+
+        <a-plane position="0 -0.05 0" rotation="-90 0 0" width="200" height="200" color="#567d46"></a-plane>
+
+        <a-entity id="race-container"></a-entity>
+
+        <a-entity id="rig" position="0 1.6 45">
+            <a-camera id="camera" look-controls></a-camera>
+        </a-entity>
+
+        <a-light type="ambient" intensity="0.8"></a-light>
+        <a-light type="directional" position="1 5 1" intensity="0.6"></a-light>
+    </a-scene>
+
+    <script>
+      const sceneEl = document.querySelector('#race-container');
+      const cameraRig = document.querySelector('#rig');
+      const foxCount = 6;
+      const foxes = [];
+
+      // 顏色清單
+      const colors = ['#FF4B2B', '#FFD200', '#1CB5E0', '#00F260', '#9D50BB', '#F7971E'];
+
+      // 橢圓基準參數
+      const baseRadiusX = 35;
+      const baseRadiusZ = 20;
+      const laneWidth = 1.8;
+
+      // 1. 初始化 6 條彩色跑道與 6 隻狐狸
+      for (let i = 0; i < foxCount; i++) {
+        const laneColor = colors[i];
+        const rX = baseRadiusX - (i * laneWidth);
+        const rZ = baseRadiusZ - (i * laneWidth);
+
+        // 繪製彩色跑道線 (使用 a-ring，並調整 scale 模擬橢圓)
+        const track = document.createElement('a-ring');
+        track.setAttribute('color', laneColor);
+        track.setAttribute('rotation', '-90 0 0');
+        track.setAttribute('radius-inner', rX - 0.1); // 微調寬度
+        track.setAttribute('radius-outer', rX + 0.1);
+        track.setAttribute('segments-theta', '128');
+        track.setAttribute('opacity', '0.6');
+        // 關鍵：將圓形縮放為橢圓比例 (rZ / rX)
+        track.setAttribute('scale', `1 ${rZ / rX} 1`);
+        sceneEl.appendChild(track);
+
+        // 初始化狐狸
+        const fox = document.createElement('a-entity');
+        fox.setAttribute('gltf-model', '#fox');
+        fox.setAttribute('scale', '0.015 0.015 0.015');
+        fox.setAttribute('animation-mixer', {clip: 'Run'});
+
+        // 變更狐狸顏色 (使用先前學到的 traverse 技巧)
+        fox.addEventListener('model-loaded', () => {
+          const mesh = fox.getObject3D('mesh');
+          mesh.traverse(node => {
+            if (node.isMesh) node.material.color.set(laneColor);
+          });
+        });
+
+        const speed = 0.008 + (Math.random() * 0.015);
+        foxes.push({
+          el: fox,
+          angle: 0,
+          speed: speed,
+          rX: rX,
+          rZ: rZ
+        });
+
+        sceneEl.appendChild(fox);
+      }
+
+      // 2. 運動邏輯
+      function update() {
+        foxes.forEach(f => {
+          f.angle += f.speed;
+
+          const x = Math.cos(f.angle) * f.rX;
+          const z = Math.sin(f.angle) * f.rZ;
+
+          // 計算切線朝向
+          const nextX = Math.cos(f.angle + 0.01) * f.rX;
+          const nextZ = Math.sin(f.angle + 0.01) * f.rZ;
+          const rotationY = Math.atan2(x - nextX, z - nextZ) * (180 / Math.PI);
+
+          f.el.setAttribute('position', {x: x, y: 0, z: z});
+          f.el.setAttribute('rotation', {x: 0, y: rotationY + 180, z: 0});
+        });
+        requestAnimationFrame(update);
+      }
+      update();
+
+      // 3. 點擊切換相機視角
+      let isOverhead = false;
+      window.addEventListener('click', () => {
+        isOverhead = !isOverhead;
+
+        if (isOverhead) {
+          // 俯瞰視角
+          cameraRig.setAttribute('animation', 'property: position; to: 0 70 0; dur: 1200; easing: easeInOutCubic');
+          cameraRig.setAttribute('animation__rot', 'property: rotation; to: -90 0 0; dur: 1200; easing: easeInOutCubic');
+        } else {
+          // 地面視角
+          cameraRig.setAttribute('animation', 'property: position; to: 0 1.6 45; dur: 1200; easing: easeInOutCubic');
+          cameraRig.setAttribute('animation__rot', 'property: rotation; to: 0 0 0; dur: 1200; easing: easeInOutCubic');
+        }
+      });
+    </script>
+</body>
+</html>

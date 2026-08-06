@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>a092012e</title>
+  <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+</head>
+
+<body>
+  <a-scene background="color: #111">
+    <a-assets>
+      <img id="texture-1" src="cubic.jpg" />
+      <img id="texture-2" src="cubic2.jpg" />
+    </a-assets>
+    <a-entity camera look-controls position="0 1.6 0">
+      <a-cursor color="red"></a-cursor>
+    </a-entity>
+
+  </a-scene>
+  <script>
+    const count = 10;
+    const radius = 5;
+    for (let i = 0; i < count; i++) {
+      const theta = (i / count) * Math.PI * 2;
+      const posX = radius * Math.sin(theta);
+      const posZ = radius * Math.cos(theta);
+
+      const box = document.createElement('a-box');
+      box.setAttribute('position', `${posX} 1 ${posZ}`);
+      box.setAttribute('src', '#texture-1'); // 預設貼圖
+
+      // 點擊切換貼圖邏輯
+      let isToggled = false;
+      box.addEventListener('click', function () {
+        isToggled = !isToggled;
+        this.setAttribute('src', isToggled ? '#texture-2' : '#texture-1');
+      });
+
+      document.querySelector('a-scene').appendChild(box);
+    }
+
+  </script>
+</body>
+
+</html>

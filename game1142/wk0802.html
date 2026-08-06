@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-sky color="#ECECEC"></a-sky>
+      
+      <a-entity id="box-container"></a-entity>
+
+      <a-camera position="0 5 10"></a-camera>
+    </a-scene>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const container = document.querySelector('#box-container');
+        const count = 36;
+        const radius = 5;
+
+        for (let i = 0; i < count; i++) {
+          // 計算角度 (0, 36, 72...)
+          let th = i * 10;
+          // 轉換為弧度
+          let rad = th * (Math.PI / 180);
+
+          // 計算座標 (依照你的需求：x = 5*sin, z = 5*sin)
+          let posX = radius * Math.sin(rad);
+          let posZ = radius * Math.cos(rad);
+          let posY = 1.6; // 給予基本高度，避免埋在地板
+
+          // 1. 建立 a-box 元素
+          const box = document.createElement('a-box');
+
+          // 2. 設定屬性
+          box.setAttribute('color', 'yellow');
+          box.setAttribute('position', `0 0 0`);
+          
+          // 3. 加入動畫 (從原本位置移動到指定的上方位置)
+          box.setAttribute('animation', {
+            property: 'position',
+            to: `${posX} 3 ${posZ}`,
+            dur: 2000,
+            easing: 'easeInOutQuad',
+            loop: true,
+            dir: 'alternate'
+          });
+
+          // 4. 將方塊加入場景
+          container.appendChild(box);
+        }
+      });
+    </script>
+  </body>
+</html>

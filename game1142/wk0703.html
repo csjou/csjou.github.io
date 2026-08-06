@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene shadow="type: pcfsoft">
+      <a-entity light="type: ambient; color: #444"></a-entity>
+
+      
+
+      <a-entity light="type: point; intensity: 1; distance: 20" 
+                position="-1 2 1"></a-entity>
+
+      <a-box position="0 0.5 -3" color="#4CC3D9" shadow="cast: true; receive: true"></a-box>
+      
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" shadow="receive: true"></a-plane>
+
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+  </body>
+</html>

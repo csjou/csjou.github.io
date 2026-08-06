@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene>
+        <a-sky color="#222"></a-sky> <a-entity id="box-container"></a-entity>
+        <a-camera position="0 1.6 3"></a-camera> </a-scene>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('#box-container');
+            const count = 36;
+            const radius = 5;
+
+            for (let i = 0; i < count; i++) {
+                let th = i * 10;
+                let rad = th * (Math.PI / 180);
+
+                // 修正為 Cos/Sin 才能圓形擴散
+                let posX = radius * Math.cos(rad);
+                let posZ = radius * Math.sin(rad);
+
+                const box = document.createElement('a-box');
+                box.setAttribute('width', '0.3');
+                box.setAttribute('height', '0.3');
+                box.setAttribute('depth', '0.3');
+
+                // 初始狀態
+                box.setAttribute('position', '0 1.6 0');
+                box.setAttribute('color', 'yellow');
+
+                // --- 複合動畫組合 ---
+
+                // 動畫 A: 旋轉
+                box.setAttribute('animation__rotate', {
+                    property: 'rotation',
+                    to: '360 360 0',
+                    dur: 2000,
+                    easing: 'easeInOutQuad',
+                    loop: true,
+                    dir: 'alternate'
+                });
+
+                // 動畫 B: 變色 (黃 -> 綠)
+                box.setAttribute('animation__color', {
+                    property: 'material.color',
+                    from: 'rgb(255, 255, 0)',   // 黃色
+                    to: 'rgb(0, 128, 0)',       // 綠色
+                    dur: 1000,
+                    easing: 'linear',
+                    loop: true,
+                    dir: 'alternate'
+                });
+
+                // 動畫 C: 位移 (向外發射)
+                box.setAttribute('animation__move', {
+                    property: 'position',
+                    to: `${posX} 1.6 ${posZ}`,
+                    dur: 2000,
+                    easing: 'easeInOutQuad',
+                    loop: true,
+                    dir: 'alternate'
+                });
+
+                container.appendChild(box);
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>A-Frame 3x3x3 立方體陣列</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+    // 代替 layout 元件的 JS 寫法
+    <script>
+        AFRAME.registerComponent('simple-grid', {
+            init: function () {
+                const margin = 1.5;
+                const cols = 3;
+                const children = this.el.querySelectorAll('a-box');
+                children.forEach((el, i) => {
+                    let x = (i % cols) * margin;
+                    let y = Math.floor(i / cols) * margin;
+                    el.setAttribute('position', { x: x, y: y, z: 0 });
+                });
+            }
+        });
+    </script>
+
+   
+</head>
+
+<body>
+    <a-scene>
+        <a-entity simple-grid position="-1.5 1 -5">
+            <a-box color="red"></a-box>
+            <a-box color="green"></a-box>
+            <a-box color="blue"></a-box>
+            <a-box color="yellow"></a-box>
+            <a-box color="orange"></a-box>
+            <a-box color="purple"></a-box>
+            <a-box color="cyan"></a-box>
+            <a-box color="magenta"></a-box>
+            <a-box color="black"></a-box>
+        </a-entity>
+        <a-entity simple-grid position="-1.5 1 -7">
+            <a-box color="red"></a-box>
+            <a-box color="green"></a-box>
+            <a-box color="blue"></a-box>
+            <a-box color="yellow"></a-box>
+            <a-box color="orange"></a-box>
+            <a-box color="purple"></a-box>
+            <a-box color="cyan"></a-box>
+            <a-box color="magenta"></a-box>
+            <a-box color="black"></a-box>
+        </a-entity>
+        <a-entity simple-grid position="-1.5 1 -9">
+            <a-box color="red"></a-box>
+            <a-box color="green"></a-box>
+            <a-box color="blue"></a-box>
+            <a-box color="yellow"></a-box>
+            <a-box color="orange"></a-box>
+            <a-box color="purple"></a-box>
+            <a-box color="cyan"></a-box>
+            <a-box color="magenta"></a-box>
+            <a-box color="black"></a-box>
+        </a-entity>
+    </a-scene>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>周重石wk1401 取得所在位置經緯度</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+            button:active {
+                background-color: #0056b3;
+            }
+
+        #result {
+            font-size: 18px;
+            color: #333;
+            line-height: 1.5;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            display: inline-block;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>取得裝置經緯度</h2>
+    <button onclick="getLocation()">取得我的位置</button>
+    <br>
+    <div id="result">請點擊上方按鈕取得座標。</div>
+
+    <script>
+        const resultDiv = document.getElementById('result');
+
+        function getLocation() {
+            // 檢查瀏覽器是否支援 Geolocation API
+            if (navigator.geolocation) {
+                resultDiv.innerHTML = "正在獲取位置資訊，請稍候...";
+
+                // 呼叫 getCurrentPosition，並傳入成功、失敗的回呼函式與設定參數
+                navigator.geolocation.getCurrentPosition(showPosition, showError, {
+                    enableHighAccuracy: true, // 設為 true 以要求高精確度 (會優先嘗試使用 GPS)
+                    timeout: 10000,           // 設定等待時間上限 (毫秒)，這裡設為 10 秒
+                    maximumAge: 0             // 設為 0 代表不使用快取，強制取得最新位置
+                });
+            } else {
+                resultDiv.innerHTML = "您的瀏覽器不支援地理位置功能。";
+            }
+        }
+
+        // 成功取得位置時執行的函式
+        function showPosition(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            resultDiv.innerHTML = `
+                <strong>緯度 (Latitude):</strong> ${lat} <br>
+                <strong>經度 (Longitude):</strong> ${lon}
+            `;
+        }
+
+        // 發生錯誤時執行的函式
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    resultDiv.innerHTML = "無法取得座標：您拒絕了位置資訊權限的要求。";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    resultDiv.innerHTML = "無法取得座標：無法取得當前位置資訊（可能是 GPS 訊號不良）。";
+                    break;
+                case error.TIMEOUT:
+                    resultDiv.innerHTML = "無法取得座標：請求位置資訊逾時，請再試一次。";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    resultDiv.innerHTML = "無法取得座標：發生未知的錯誤。";
+                    break;
+            }
+        }
+    </script>
+
+</body>
+</html>

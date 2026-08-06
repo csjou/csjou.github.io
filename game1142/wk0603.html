@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <img id="panorama" src="https://raw.githubusercontent.com/aframevr/aframe/master/examples/boilerplate/panorama/puydesancy.jpg" crossorigin="anonymous">
+      </a-assets>
+
+      <a-sphere 
+        src="#panorama" 
+        radius="100" 
+        phi-length="360"
+        material="side: back">
+      </a-sphere>
+
+      <a-entity camera look-controls></a-entity>
+    </a-scene>
+  </body>
+</html>

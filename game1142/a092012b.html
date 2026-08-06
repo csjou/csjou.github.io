@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>a092012b</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+  </head>
+  <body>
+    <!-- 需引入 layout 與 environment 擴充套件 -->
+<a-scene>
+  <!-- 快速生成森林環境 -->
+  <a-entity environment="preset: forest; dressingAmount: 50"></a-entity>
+
+  <!-- 自動圓環排列實體 -->
+  <a-entity layout="type: circle; radius: 3" position="0 1 -10">
+    <a-sphere radius="0.5" color="red"></a-sphere>
+    <a-sphere radius="0.5" color="orange"></a-sphere>
+    <a-sphere radius="0.5" color="yellow"></a-sphere>
+    <a-sphere radius="0.5" color="green"></a-sphere>
+    <a-sphere radius="0.5" color="blue"></a-sphere>
+  </a-entity>
+</a-scene>
+
+  </body>
+</html>

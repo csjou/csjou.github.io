@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>A-Frame VR Menu - Horizontal</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+
+    <script>
+        // 點擊觸發換背景色的簡單組件
+        AFRAME.registerComponent('menu-action', {
+            schema: { color: { type: 'string' } },
+            init: function () {
+                var targetColor = this.data.color;
+                var sky = document.querySelector('a-sky');
+                this.el.addEventListener('click', function () {
+                    sky.setAttribute('color', targetColor);
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <a-scene>
+        <a-sky id="background" color="#ECECEC"></a-sky>
+
+        <a-entity camera look-controls>
+            <a-cursor fuse="true" fuse-timeout="1500"
+                      raycaster="objects: .clickable"
+                      material="color: #000000; shader: flat"
+                      animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+                      animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 100; to: 1 1 1">
+            </a-cursor>
+        </a-entity>
+
+        <a-entity id="menu" position="0 1.5 -1">
+
+            <a-plane class="clickable" position="-0.6 0 0" width="0.5" height="0.3" color="#2196F3"
+                     event-set__mouseenter="_event: mouseenter; color: #FF5722"
+                     event-set__mouseleave="_event: mouseleave; color: #2196F3"
+                     menu-action="color: #FF5722">
+                <a-text value="Red" align="center" position="0 0 0.01" width="2" color="#FFF"></a-text>
+            </a-plane>
+
+            <a-plane class="clickable" position="0 0 0" width="0.5" height="0.3" color="#2196F3"
+                     event-set__mouseenter="_event: mouseenter; color: #4CAF50"
+                     event-set__mouseleave="_event: mouseleave; color: #2196F3"
+                     menu-action="color: #4CAF50">
+                <a-text value="Green" align="center" position="0 0 0.01" width="2" color="#FFF"></a-text>
+            </a-plane>
+
+            <a-plane class="clickable" position="0.6 0 0" width="0.5" height="0.3" color="#2196F3"
+                     event-set__mouseenter="_event: mouseenter; color: #9C27B0"
+                     event-set__mouseleave="_event: mouseleave; color: #2196F3"
+                     menu-action="color: #9C27B0">
+                <a-text value="Purple" align="center" position="0 0 0.01" width="2" color="#FFF"></a-text>
+            </a-plane>
+
+        </a-entity>
+    </a-scene>
+</body>
+</html>

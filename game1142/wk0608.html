@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>A-Frame 材質與紋理測試</title>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <style>
+      /* 確保按鈕固定在螢幕最前方 */
+      #playButton {
+        position: fixed; 
+        top: 20px; left: 20px; 
+        z-index: 9999; /* 數字越大越在上層 */
+      }
+    </style>
+  </head>
+  <body>
+    <button id="playButton">點擊開始播放</button>
+    <a-scene>
+      <a-assets>
+        <img id="wood" src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@master/examples/textures/floors/FloorsCheckerboard_S_Diffuse.jpg">
+        <img id="glass-texture" src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@master/examples/textures/sprites/snowflake1.png">
+        <img id="ground" src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@master/examples/textures/terrain/grasslight-big.jpg">
+        <video id="myvideo" src="mov_bbb.mp4" preload="auto" loop="true" crossorigin="anonymous" playsinline
+                webkit-playsinline muted>
+            </video>
+      </a-assets>
+
+      <a-box position="-2 1 -3" src="#wood" animation="property: rotation; to: 0 360 0; loop: true; dur: 5000"></a-box>
+
+      <a-video src="#myvideo" width="4" height="2.25" position="0 2.5 -5"></a-video>
+
+      <a-sphere position="2 1 -3" radius="0.7" color="#4CC3D9" opacity="0.6" transparent="true"></a-sphere>
+      
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="10" height="10" src="#ground" repeat="10 10"></a-plane>
+
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+     <script>
+        // 5. JavaScript：在使用者點擊按鈕後啟動影片
+        document.getElementById('playButton').addEventListener('click', function () {
+            var v = document.querySelector('#myvideo');
+            v.play(); // 播放影片
+           // this.style.display = 'none'; // 隱藏按鈕
+        });
+    </script>
+  </body>
+</html>

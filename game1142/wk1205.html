@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>周重石 wk1204 A-Frame Fox Model Test</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+</head>
+<body>
+    <a-scene background="color: #333">
+
+        <a-assets>
+            <a-asset-item id="fox" src="fox.glb"></a-asset-item>
+        </a-assets>
+
+        <a-grid></a-grid>
+
+        <a-entity id="fox-model"
+                  gltf-model="#fox"
+                  position="0 0 -7"
+                  scale="0.02 0.02 0.02"
+                  animation-mixer="clip: Survey; loop: repeat; timeScale: 1">
+        </a-entity>
+
+        <a-entity light="type: ambient; intensity: 0.8"></a-entity>
+        <a-entity light="type: directional; intensity: 0.6" position="-1 2 1"></a-entity>
+
+        <a-entity position="0 1.6 2">
+            <a-camera look-controls wasd-controls></a-camera>
+        </a-entity>
+
+    </a-scene>
+
+    <script>
+        // 取得狐狸模型實體
+        const fox = document.querySelector('#fox-model');
+        const animations = ['Survey', 'Walk', 'Run'];
+        let index = 0;
+
+        // 定義切換函數
+        function switchAnimation() {
+            index = (index + 1) % animations.length; // 循環索引：0, 1, 2, 0...
+            const nextClip = animations[index];
+
+            // 更新動畫
+            fox.setAttribute('animation-mixer', {
+                clip: nextClip,
+                crossFadeDuration: 0.5 // 加入 0.5 秒平滑過渡，切換更自然
+            });
+
+            console.log("當前動畫: " + nextClip);
+        }
+
+        // 1. 監聽鍵盤 Space 鍵 (電腦用)
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                switchAnimation();
+            }
+        });
+
+        // 2. 監聽螢幕點擊 (手機與滑鼠通用)
+        // A-Frame 的 scene 容器通常填滿整個螢幕
+        window.addEventListener('click', () => {
+            switchAnimation();
+        });
+    </script>
+</body>
+</html>

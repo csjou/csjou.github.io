@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.3.7/dist/aframe-environment-component.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-entity environment="preset: yosemite; skyType: gradient; dressingAmount: 100"></a-entity>
+
+      <a-entity id="box-container"></a-entity>
+      <a-camera position="0 1.6 3"></a-camera>
+    </a-scene>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const container = document.querySelector('#box-container');
+        const count = 36;
+        const radius = 5;
+
+        for (let i = 0; i < count; i++) {
+          let th = i * 10;
+          let rad = th * (Math.PI / 180);
+          let posX = radius * Math.cos(rad);
+          let posZ = radius * Math.sin(rad);
+
+          const box = document.createElement('a-box');
+          box.setAttribute('width', '0.2');
+          box.setAttribute('height', '0.2');
+          box.setAttribute('depth', '0.2');
+          box.setAttribute('position', '0 1.6 0');
+          
+          // 修正顏色動畫：確保 property 寫對，並設定 from/to
+          box.setAttribute('animation__color', {
+            property: 'material.color',
+            from: 'yellow',
+            to: 'green',
+            dur: 1000,
+            loop: true,
+            dir: 'alternate'
+          });
+
+          box.setAttribute('animation__move', {
+            property: 'position',
+            to: `${posX} 1.6 ${posZ}`,
+            dur: 2000,
+            easing: 'easeInOutQuad',
+            loop: true,
+            dir: 'alternate'
+          });
+
+          container.appendChild(box);
+        }
+      });
+    </script>
+  </body>
+</html>

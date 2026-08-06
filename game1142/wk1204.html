@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>周重石 wk1204 A-Frame Fox Model Test</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+</head>
+<body>
+    <a-scene background="color: #333">
+
+        <a-assets>
+            <a-asset-item id="fox" src="fox.glb"></a-asset-item>
+        </a-assets>
+
+        <a-grid></a-grid>
+
+        <a-entity id="fox-model"
+                  gltf-model="#fox"
+                  position="0 0 -7"
+                  scale="0.02 0.02 0.02"
+                  animation-mixer="clip: Survey; loop: repeat; timeScale: 1">
+        </a-entity>
+
+        <a-entity light="type: ambient; intensity: 0.8"></a-entity>
+        <a-entity light="type: directional; intensity: 0.6" position="-1 2 1"></a-entity>
+
+        <a-entity position="0 1.6 2">
+            <a-camera look-controls wasd-controls></a-camera>
+        </a-entity>
+
+    </a-scene>
+
+    <script>
+      // 互動小腳本：按下空白鍵切換動畫
+      window.addEventListener('keydown', (e) => {
+        if (e.code === 'Space') {
+          const fox = document.querySelector('#fox-model');
+          const currentClip = fox.getAttribute('animation-mixer').clip;
+
+          // Fox.glb 通常包含三個動畫: Survey (偵查), Walk (走路), Run (跑步)
+          const nextClip = currentClip === 'Survey' ? 'Walk' : (currentClip === 'Walk' ? 'Run' : 'Survey');
+
+          fox.setAttribute('animation-mixer', 'clip', nextClip);
+          console.log("切換動畫至: " + nextClip);
+        }
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>周重石 wk1209 A-Frame Forest Foxes - 18 Fox Party</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.3.7/dist/aframe-environment-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <a-assets>
+            <a-asset-item id="fox" src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Fox/glTF-Binary/Fox.glb"></a-asset-item>
+        </a-assets>
+
+        <a-entity environment="preset: forest; dressingAmount: 50; shadow: true"></a-entity>
+
+        <a-entity id="fox-group"></a-entity>
+
+        <a-entity id="rig" position="0 1.6 15">
+            <a-camera look-controls wasd-controls></a-camera>
+        </a-entity>
+    </a-scene>
+
+    <script>
+      const group = document.querySelector('#fox-group');
+      const modes = ['Survey', 'Walk', 'Run'];
+      const countPerMode = 6;
+
+      // 生成 18 隻狐狸
+      modes.forEach((mode, modeIndex) => {
+        for (let i = 0; i < countPerMode; i++) {
+          const fox = document.createElement('a-entity');
+
+          // 設定模型與縮放
+          fox.setAttribute('gltf-model', '#fox');
+          fox.setAttribute('scale', '0.015 0.015 0.015');
+
+          // 初始位置排成陣列：X 軸展開，Z 軸依動作分排
+          let startX = (i - 2.5) * 4; // 讓 6 隻左右排開
+          let startZ = (modeIndex - 1) * 8; // 讓三組前後排開
+          fox.setAttribute('position', {x: startX, y: 0, z: startZ});
+
+          // 根據動作設定不同的動畫
+          if (mode === 'Survey') {
+            // 第一組：原地揮手/偵查
+            fox.setAttribute('animation-mixer', {clip: 'Survey', loop: 'repeat'});
+            fox.setAttribute('rotation', '0 180 0'); // 面向攝影機
+          }
+          else if (mode === 'Walk') {
+            // 第二組：走路 + 實際位移
+            fox.setAttribute('animation-mixer', {clip: 'Walk', loop: 'repeat'});
+            fox.setAttribute('rotation', '0 90 0'); // 面向右方
+            fox.setAttribute('animation', {
+              property: 'position',
+              from: `${startX - 5} 0 ${startZ}`,
+              to: `${startX + 5} 0 ${startZ}`,
+              dur: 8000,
+              dir: 'alternate',
+              loop: true,
+              easing: 'linear'
+            });
+          }
+          else if (mode === 'Run') {
+            // 第三組：跑步 + 快速位移
+            fox.setAttribute('animation-mixer', {clip: 'Run', loop: 'repeat'});
+            fox.setAttribute('rotation', '0 90 0'); // 面向右方
+            fox.setAttribute('animation', {
+              property: 'position',
+              from: `${startX - 10} 0 ${startZ}`,
+              to: `${startX + 10} 0 ${startZ}`,
+              dur: 3000, // 跑得比較快
+              dir: 'alternate',
+              loop: true,
+              easing: 'linear'
+            });
+          }
+
+          group.appendChild(fox);
+
+          // 為了美觀，當方向反轉時讓狐狸轉身 (Walk 和 Run 組)
+          if (mode !== 'Survey') {
+            fox.addEventListener('animationloop', () => {
+              const currentRot = fox.getAttribute('rotation').y;
+              fox.setAttribute('rotation', `0 ${currentRot + 180} 0`);
+            });
+          }
+        }
+      });
+    </script>
+</body>
+</html>

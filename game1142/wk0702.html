@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>周重石 wk0702</title>
+  <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+</head>
+
+<body>
+  <a-scene>
+    <a-assets>
+      <img id="img1" crossorigin="anonymous"
+        src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@master/examples/textures/floors/FloorsCheckerboard_S_Diffuse.jpg">
+      <img id="img2" crossorigin="anonymous"
+        src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@master/examples/textures/terrain/grasslight-big.jpg">
+      <img id="img3" src="img3.png"/>
+    </a-assets>
+
+    <a-entity camera look-controls position="0 1.6 0">
+      <a-cursor color="#FF0000"></a-cursor>
+    </a-entity>
+
+    <a-box id="myBox" position="0 1.5 -3" src="#img1"
+      animation__mouseenter="property: scale; to: 1.1 1.1 1.1; dur: 200; startEvents: mouseenter"
+      animation__mouseleave="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave">
+    </a-box>
+
+    <a-text value="Click the box to change texture" position="-1.5 2.5 -3" color="#333"></a-text>
+    <a-sky color="#ECECEC"></a-sky>
+  </a-scene>
+
+  <script>
+    // 取得物件節點
+    const boxEl = document.querySelector('#myBox');
+    // 設定材質陣列
+    const textures = ['#img1', '#img2', '#img3'];
+    let index = 0;
+    // 監聽 'click' 事件
+
+
+    //boxE1.addEventListener('click', () => {
+    //  index = (index + 1) % textures.length; // 循環索引
+    //  boxEl.setAttribute('src', textures[index]);
+    //});
+    // 監聽 'click' 事件
+      boxEl.addEventListener('click',  () => {
+      index = (index + 1) % textures.length; // 循環索引
+      boxEl.setAttribute('src', textures[index]);
+        
+        console.log('材質已更換！當前狀態：' + (isTexture1 ? '木紋' : '草地'));
+      });
+  </script>
+</body>
+
+</html>

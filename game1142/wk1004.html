@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>wk1004 周重石 A-Frame Gaze Cursor 測試</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+</head>
+<body>
+
+    <a-scene>
+        <a-sky color="#2c3e50"></a-sky>
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="10" height="10" color="#7f8c8d"></a-plane>
+
+        <a-box class="clickable" position="-2 1.5 -4" color="#e74c3c" title="紅色方塊"></a-box>
+        <a-box class="clickable" position="0 1.5 -4" color="#f1c40f" title="黃色方塊"></a-box>
+        <a-box class="clickable" position="2 1.5 -4" color="#3498db" title="藍色方塊"></a-box>
+
+        <a-entity camera look-controls position="0 1.6 0">
+            <a-entity cursor="fuse: true; fuseTimeout: 1000"
+                      position="0 0 -1"
+                      geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                      material="color: white; shader: flat"
+                      animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1000; from: 1 1 1; to: 0.1 0.1 0.1"
+                      animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1">
+            </a-entity>
+        </a-entity>
+    </a-scene>
+
+    <script>
+      // 為所有類別為 clickable 的元素加上點擊監聽
+      const boxes = document.querySelectorAll('.clickable');
+
+      boxes.forEach(box => {
+        box.addEventListener('click', function () {
+          // 當被「注視成功」時，隨機變換顏色
+          const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+          this.setAttribute('color', randomColor);
+
+          // 在控制台輸出訊息確認
+          console.log(this.getAttribute('title') + ' 被觸發了！');
+        });
+      });
+    </script>
+</body>
+</html>

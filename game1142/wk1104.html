@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>A-Frame 傳參數元件測試</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+
+    <script>
+      // 註冊 spin 元件
+      AFRAME.registerComponent("spin", {
+        // 定義可接收的參數
+        schema: {
+          speed: { type: "number", default: 1 }
+        },
+        // t 是總時間，dt 是距離上一幀的時間差 (ms)
+        tick: function (t, dt) {
+          // 使用 this.data.speed 來獲取 HTML 中設定的數值
+          // 乘以 dt/1000 是為了將速度單位轉為「每秒弧度」
+          this.el.object3D.rotation.y += (dt / 1000) * this.data.speed;
+        }
+      });
+    </script>
+</head>
+<body>
+    <a-scene>
+        <a-sky color="#333"></a-sky>
+
+        <a-box position="-2 1.5 -4" color="#FF5733" spin>
+            <a-text value="Default (1)" align="center" position="0 1.2 0"></a-text>
+        </a-box>
+
+        <a-box position="0 1.5 -4" color="#33FF57" spin="speed: 0.5">
+            <a-text value="Slow (0.5)" align="center" position="0 1.2 0"></a-text>
+        </a-box>
+
+        <a-box position="2 1.5 -4" color="#3357FF" spin="speed: 5">
+            <a-text value="Fast (5.0)" align="center" position="0 1.2 0"></a-text>
+        </a-box>
+
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="10" height="10" color="#777"></a-plane>
+    </a-scene>
+</body>
+</html>

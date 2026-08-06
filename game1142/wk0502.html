@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>092012 wK0502 A-Frame InitializeComponent Demo</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  </head>
+  <body>
+
+    <script>
+      /**
+       * 模擬 WinForm 的初始化機制
+       */
+      function InitializeComponent() {
+        // 1. 建立 Scene (相當於 Form 本體)
+        const scene = document.createElement('a-scene');
+        
+        // 2. 建立 Box (方塊)
+        const box = document.createElement('a-box');
+        box.setAttribute('position', '-1 0.5 -3');
+        box.setAttribute('rotation', '0 45 0');
+        box.setAttribute('color', '#4CC3D9');
+        scene.appendChild(box);
+
+        // 3. 建立 Sphere (球體)
+        const sphere = document.createElement('a-sphere');
+        sphere.setAttribute('position', '0 1.25 -5');
+        sphere.setAttribute('radius', '1.25');
+        sphere.setAttribute('color', '#EF2D5E');
+        scene.appendChild(sphere);
+
+        // 4. 建立 Cylinder (圓柱體)
+        const cylinder = document.createElement('a-cylinder');
+        cylinder.setAttribute('position', '1 0.75 -3');
+        cylinder.setAttribute('radius', '0.5');
+        cylinder.setAttribute('height', '1.5');
+        cylinder.setAttribute('color', '#FFC65D');
+        scene.appendChild(cylinder);
+
+        // 5. 建立 Plane (地板)
+        const plane = document.createElement('a-plane');
+        plane.setAttribute('position', '0 0 -4');
+        plane.setAttribute('rotation', '-90 0 0');
+        plane.setAttribute('width', '4');
+        plane.setAttribute('height', '4');
+        plane.setAttribute('color', '#7BC8A4');
+        scene.appendChild(plane);
+
+        // 6. 建立 Sky (背景色)
+        const sky = document.createElement('a-sky');
+        sky.setAttribute('color', '#ECECEC');
+        scene.appendChild(sky);
+
+        // 最後將整個場景掛載到 body
+        document.body.appendChild(scene);
+      }
+
+      // 當頁面載入時執行初始化
+      window.onload = InitializeComponent;
+    </script>
+    
+  </body>
+</html>
