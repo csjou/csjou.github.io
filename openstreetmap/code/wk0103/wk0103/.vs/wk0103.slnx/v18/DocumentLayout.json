@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\csjou\\OneDrive\\\u6587\u4EF6\\GitHub\\csjou.github.io\\openstreetmap\\code\\wk0103\\wk0103\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5BFCCC4E-77F2-4AAE-8053-62488BECD00E}|wk0103.csproj|c:\\users\\csjou\\onedrive\\\u6587\u4EF6\\github\\csjou.github.io\\openstreetmap\\code\\wk0103\\wk0103\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5BFCCC4E-77F2-4AAE-8053-62488BECD00E}|wk0103.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BFCCC4E-77F2-4AAE-8053-62488BECD00E}|wk0103.csproj|C:\\Users\\csjou\\OneDrive\\\u6587\u4EF6\\GitHub\\csjou.github.io\\openstreetmap\\code\\wk0103\\wk0103\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5BFCCC4E-77F2-4AAE-8053-62488BECD00E}|wk0103.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\csjou\\OneDrive\\\u6587\u4EF6\\GitHub\\csjou.github.io\\openstreetmap\\code\\wk0103\\wk0103\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\csjou\\OneDrive\\\u6587\u4EF6\\GitHub\\csjou.github.io\\openstreetmap\\code\\wk0103\\wk0103\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-08-24T03:08:31.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\csjou\\OneDrive\\\u6587\u4EF6\\GitHub\\csjou.github.io\\openstreetmap\\code\\wk0103\\wk0103\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\csjou\\OneDrive\\\u6587\u4EF6\\GitHub\\csjou.github.io\\openstreetmap\\code\\wk0103\\wk0103\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAA2wCIAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-24T03:08:29.934Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
