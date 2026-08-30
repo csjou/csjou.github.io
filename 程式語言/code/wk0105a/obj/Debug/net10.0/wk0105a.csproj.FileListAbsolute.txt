@@ -1,0 +1,15 @@
+C:\Users\csjou\OneDrive\文件\GitHub\csjou.github.io\程式語言\code\wk0105a\bin\Debug\net10.0\wk0105a.exe
+C:\Users\csjou\OneDrive\文件\GitHub\csjou.github.io\程式語言\code\wk0105a\bin\Debug\net10.0\wk0105a.deps.json
+C:\Users\csjou\OneDrive\文件\GitHub\csjou.github.io\程式語言\code\wk0105a\bin\Debug\net10.0\wk0105a.runtimeconfig.json
+C:\Users\csjou\OneDrive\文件\GitHub\csjou.github.io\程式語言\code\wk0105a\bin\Debug\net10.0\wk0105a.dll
+C:\Users\csjou\OneDrive\文件\GitHub\csjou.github.io\程式語言\code\wk0105a\bin\Debug\net10.0\wk0105a.pdb
+C:\Users\csjou\OneDrive\文件\GitHub\csjou.github.io\程式語言\code\wk0105a\obj\Debug\net10.0\wk0105a.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\csjou\OneDrive\文件\GitHub\csjou.github.io\程式語言\code\wk0105a\obj\Debug\net10.0\wk0105a.AssemblyInfoInputs.cache
+C:\Users\csjou\OneDrive\文件\GitHub\csjou.github.io\程式語言\code\wk0105a\obj\Debug\net10.0\wk0105a.AssemblyInfo.cs
+C:\Users\csjou\OneDrive\文件\GitHub\csjou.github.io\程式語言\code\wk0105a\obj\Debug\net10.0\wk0105a.csproj.CoreCompileInputs.cache
+C:\Users\csjou\OneDrive\文件\GitHub\csjou.github.io\程式語言\code\wk0105a\obj\Debug\net10.0\wk0105a.sourcelink.json
+C:\Users\csjou\OneDrive\文件\GitHub\csjou.github.io\程式語言\code\wk0105a\obj\Debug\net10.0\wk0105a.dll
+C:\Users\csjou\OneDrive\文件\GitHub\csjou.github.io\程式語言\code\wk0105a\obj\Debug\net10.0\refint\wk0105a.dll
+C:\Users\csjou\OneDrive\文件\GitHub\csjou.github.io\程式語言\code\wk0105a\obj\Debug\net10.0\wk0105a.pdb
+C:\Users\csjou\OneDrive\文件\GitHub\csjou.github.io\程式語言\code\wk0105a\obj\Debug\net10.0\wk0105a.genruntimeconfig.cache
+C:\Users\csjou\OneDrive\文件\GitHub\csjou.github.io\程式語言\code\wk0105a\obj\Debug\net10.0\ref\wk0105a.dll
