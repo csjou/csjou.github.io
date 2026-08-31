@@ -6,17 +6,14 @@
     <body>
         <h1>wk0301</h1>
         <p id="outp1">請在此輸入內容</p>
+    
     </body>
-    <javascript>
-        // 這裡可以放置 JavaScript 代碼
-        // JavaScript
-        let age = 25;           // 類似 C# 的 var，但可重新賦值
-        const name = "Alice";   // 類似 C# 的 const，但注意：物件內容仍可變！
-        let scores = [90, 85, 88];  // 陣列 = C# 的 List<T>
-        scores.push(95);        // .Add() → .push()
-
+    <javascript type="text/javascript">
+        let age = 25;           
+        const name = "Alice";   
+        let scores = [90, 85, 88];  
+        scores.push(95);        
         const PI = 3.14159;
-        // PI = 3.14;  // ❌ TypeError
         document.getElementById("outp1").textContent = name + " " + scores.join(", ") + " " + age; " " + PI;    
     </javascript> 
     
