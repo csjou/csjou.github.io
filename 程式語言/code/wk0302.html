@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> wk0302</title>
+    </head>
+<body>
+        <h1>wk0302</h1>
+        <p id="outp1">請在此輸入內容</p>
+
+    <script>
+
+        // JS - Class（ES6，語法糖，底層仍是 Prototype）
+class Student {
+    constructor(name, score) {
+        this.name = name;
+        this.score = score;
+    }
+    
+    isPassed() {
+        return this.score >= 60;
+    }
+}
+
+// JS - Object Literal（C# 沒有直接對等，類似 anonymous type）
+const student = new Student("Alice", 85);
+const anonymousStudent = { name: "Bob", score: 70 };
+
+// JS - Arrow Function（與 C# Lambda 幾乎一樣！）
+const square = x => x * x;
+const numbers = [1, 2, 3];
+const squared = numbers.map(n => n * n);  // .Select() → .map()
+
+// 🔑 關鍵差異：this 的綁定
+class Timer {
+    constructor() {
+        this.seconds = 0;
+    }
+    
+    // ❌ 傳統函式：this 會跑掉！
+    startWrong() {
+        setInterval(function() {
+            this.seconds++;  // this 指向 window/undefined，不是 Timer！
+        }, 1000);
+    }
+    
+    // ✅ Arrow Function：this 會正確綁定
+    startCorrect() {
+        setInterval(() => {
+            this.seconds++;  // this 正確指向 Timer 實例
+        }, 1000);
+    }
+}
+// const timer1 = new Timer();
+// --- 測試正確的寫法 ---
+// 先將剛才的計時器（如果還在跑）或建立一個全新的來測試
+const luckyTimer = new Timer();
+luckyTimer.startCorrect();
+
+// 3秒後檢查：秒數正確累加
+setTimeout(() => {
+    // console.log("正確寫法的結果：", luckyTimer.seconds); // 輸出：3（大約值，依瀏覽器排程微有差異）
+    document.getElementById("outp1").textContent = anonymousStudent.name + student.name + luckyTimer.seconds;    
+}, 3050);
+
+    </script>
+</body>
+
+</html>
