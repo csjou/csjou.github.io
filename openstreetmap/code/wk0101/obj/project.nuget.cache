@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KY2hTuaHRjY=",
+  "dgSpecHash": "Ad5YX6b61i8=",
   "success": true,
   "projectFilePath": "C:\\Users\\csjou\\OneDrive\\文件\\GitHub\\csjou.github.io\\openstreetmap\\code\\wk0101\\wk0101.csproj",
   "expectedPackageFiles": [
@@ -23,7 +23,7 @@
     {
       "code": "NU1902",
       "level": "Warning",
-      "message": "套件 'System.Data.SqlClient' 4.8.3 具有已知的 中度 嚴重性弱點，https://github.com/advisories/GHSA-8g2p-5pqh-5jmc。",
+      "message": "Package 'System.Data.SqlClient' 4.8.3 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-8g2p-5pqh-5jmc",
       "projectPath": "C:\\Users\\csjou\\OneDrive\\文件\\GitHub\\csjou.github.io\\openstreetmap\\code\\wk0101\\wk0101.csproj",
       "warningLevel": 1,
       "filePath": "C:\\Users\\csjou\\OneDrive\\文件\\GitHub\\csjou.github.io\\openstreetmap\\code\\wk0101\\wk0101.csproj",
@@ -35,7 +35,7 @@
     {
       "code": "NU1903",
       "level": "Warning",
-      "message": "套件 'System.Data.SqlClient' 4.8.3 具有已知的 高 嚴重性弱點，https://github.com/advisories/GHSA-98g6-xh36-x2p7。",
+      "message": "Package 'System.Data.SqlClient' 4.8.3 has a known high severity vulnerability, https://github.com/advisories/GHSA-98g6-xh36-x2p7",
       "projectPath": "C:\\Users\\csjou\\OneDrive\\文件\\GitHub\\csjou.github.io\\openstreetmap\\code\\wk0101\\wk0101.csproj",
       "warningLevel": 1,
       "filePath": "C:\\Users\\csjou\\OneDrive\\文件\\GitHub\\csjou.github.io\\openstreetmap\\code\\wk0101\\wk0101.csproj",

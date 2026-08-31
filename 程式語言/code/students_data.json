@@ -1,0 +1,24 @@
+[
+  {
+    "name": "CS Jou",
+    "age": 22,
+    "id": "092012",
+    "scores": [
+      {
+        "subject": "Chinese",
+        "score": 90.0
+      }
+    ]
+  },
+  {
+    "name": "Hi",
+    "age": 22,
+    "id": "092013",
+    "scores": [
+      {
+        "subject": "Chinese",
+        "score": 95.0
+      }
+    ]
+  }
+]
