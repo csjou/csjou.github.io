@@ -6,7 +6,7 @@ using Google.GenAI.Types;
 class Program
 {
     // 請將此處替換為您在 Google AI Studio 取得的 API 金鑰
-    private const string ApiKey = "AQ.Ab8RN6KJAGGjN46yvJiICTYwgojvDko-d8pNv1CHxFufS36QSA";
+    private const string ApiKey = "API 金鑰";
 
     static async Task Main(string[] args)
     {

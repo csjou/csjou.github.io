@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GemiQuickstart")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0fac61841902177b692646663b3685fbaeff1648")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fae61e7fdce27fd5b54368a87c693890dd3ce7aa")]
 [assembly: System.Reflection.AssemblyProductAttribute("GemiQuickstart")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GemiQuickstart")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
