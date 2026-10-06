@@ -16,14 +16,12 @@ OpenStreetMap 應用功能清單
 ## wk0101 Error 403 Access block
 
 ## wk0103/wk0105 dotnet framework 4.7.2
-add package Mapsui.Wpf-Net472
+add package Mapsui.Wpf-Net472@3.0.2
 
 ## wk0103 dotnet core 10.0 wpf
 版本要注意!
-<ItemGroup>
-    <PackageReference Include="HarfBuzzSharp.NativeAssets.Win32" Version="8.3.1.3" />
-    <PackageReference Include="Mapsui.Wpf" Version="5.1.0" />
-    <PackageReference Include="SkiaSharp" Version="3.119.2" />
-    <PackageReference Include="SkiaSharp.NativeAssets.Win32" Version="3.119.2" />
-    <PackageReference Include="SkiaSharp.Views.WPF" Version="3.119.2" />
-</ItemGroup>
+#:sdk Microsoft.NET.Sdk
+#:property TargetFramework=net10.0-windows
+#:property UseWPF=true
+#:property PublishTrimmed=false
+#:package Mapsui.Wpf@5.1.0
