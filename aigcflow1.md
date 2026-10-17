@@ -7,7 +7,7 @@
 本系統管線主要拆解為四大階段，支援角色特徵一致性控制與自動化快取管理。以下為系統整體運作之流程圖：
 
 ```mermaid
-graph TD
+flowchart TD
     %% 定義節點樣式
     classDef stage fill:#f9f9f9,stroke:#333,stroke-width:2px;
     classDef core fill:#e1f5fe,stroke:#0288d1,stroke-width:2px;
