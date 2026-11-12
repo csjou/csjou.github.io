@@ -27,3 +27,12 @@ add package Mapsui.Wpf-Net472
     <PackageReference Include="SkiaSharp.NativeAssets.Win32" Version="3.119.2" />
     <PackageReference Include="SkiaSharp.Views.WPF" Version="3.119.2" />
 </ItemGroup>
+
+## wk0201 fail 
+## wk0202
+### dotnet core 10.0  wpf
+### Add Package Mapsui.wpf 5.1.0
+Option 1: Native WPF App using Mapsui (Recommended)Mapsui is the premier modern, open-source library for native cross-platform mapping in .NET.
+## wk0203
+### dotnet core 10.0 wpf
+### Install-Package XAML.MapControl.WPF

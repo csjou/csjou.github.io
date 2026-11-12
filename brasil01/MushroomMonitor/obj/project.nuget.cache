@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "PN3mxca41u8=",
+  "dgSpecHash": "t6rf6NY6G8M=",
   "success": true,
   "projectFilePath": "C:\\Users\\csjou\\OneDrive\\文件\\GitHub\\csjou.github.io\\brasil01\\MushroomMonitor\\MushroomMonitor.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\csjou\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
-    "C:\\Users\\csjou\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.11\\microsoft.aspnetcore.app.internal.assets.10.0.11.nupkg.sha512",
+    "C:\\Users\\csjou\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.14\\microsoft.aspnetcore.app.internal.assets.10.0.14.nupkg.sha512",
     "C:\\Users\\csjou\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "C:\\Users\\csjou\\.nuget\\packages\\microsoft.build.framework\\17.8.3\\microsoft.build.framework.17.8.3.nupkg.sha512",
     "C:\\Users\\csjou\\.nuget\\packages\\microsoft.build.locator\\1.7.8\\microsoft.build.locator.1.7.8.nupkg.sha512",
@@ -35,5 +35,18 @@
     "C:\\Users\\csjou\\.nuget\\packages\\system.composition.runtime\\7.0.0\\system.composition.runtime.7.0.0.nupkg.sha512",
     "C:\\Users\\csjou\\.nuget\\packages\\system.composition.typedparts\\7.0.0\\system.composition.typedparts.7.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "套件 'MySqlConnector' 2.4.0 具有已知的 中度 嚴重性弱點，https://github.com/advisories/GHSA-473q-m89c-ghf8。",
+      "projectPath": "C:\\Users\\csjou\\OneDrive\\文件\\GitHub\\csjou.github.io\\brasil01\\MushroomMonitor\\MushroomMonitor.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\csjou\\OneDrive\\文件\\GitHub\\csjou.github.io\\brasil01\\MushroomMonitor\\MushroomMonitor.csproj",
+      "libraryId": "MySqlConnector",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }

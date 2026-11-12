@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>GeoJSON 批次 AR 標籤與 3D 物件生成</title>
+
+    <!-- Leaflet.js 地圖庫 -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- A-Frame & AR.js 地理定位庫 -->
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <!-- 引入 look-at 組件讓標籤自動面朝相機 -->
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+
+    <style>
+      body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; font-family: sans-serif; }
+      #map-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 10; }
+      #ar-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; display: none; }
+      .ui-button {
+        position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 100;
+        padding: 14px 28px; background-color: #007bff; color: white; border: none; border-radius: 30px;
+        font-size: 16px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+
+    <button id="toggle-btn" class="ui-button" onclick="switchView()">開啟 AR 模式</button>
+
+    <!-- 1. 2D OSM 地圖視圖 -->
+    <div id="map-container">
+      <div id="osm-map" style="width: 100%; height: 100%;"></div>
+    </div>
+
+    <!-- 2. AR 視圖 -->
+    <div id="ar-container">
+      <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" vr-mode-ui="enabled: false">
+        <a-camera gps-camera rotation-reader></a-camera>
+      </a-scene>
+    </div>
+
+    <script>
+      let currentView = 'map';
+      let map;
+
+      // 1. 定義多個 GeoJSON 點位
+      const poiData = {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": { "name": "地標 A (紅)", "color": "#EF4444" },
+            "geometry": { "type": "Point", "coordinates": [121.564468, 25.033968] }
+          },
+          {
+            "type": "Feature",
+            "properties": { "name": "地標 B (綠)", "color": "#10B981" },
+            "geometry": { "type": "Point", "coordinates": [121.565100, 25.034500] }
+          },
+          {
+            "type": "Feature",
+            "properties": { "name": "地標 C (藍)", "color": "#3B82F6" },
+            "geometry": { "type": "Point", "coordinates": [121.563800, 25.033200] }
+          }
+        ]
+      };
+
+      // 2. 初始化地圖並繪製多點位標記
+      function initMap() {
+        const firstCoord = poiData.features[0].geometry.coordinates;
+        map = L.map('osm-map').setView([firstCoord[1], firstCoord[0]], 16);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19, attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // 遍歷 GeoJSON 地圖繪圖
+        poiData.features.forEach(f => {
+          const [lon, lat] = f.geometry.coordinates;
+          L.marker([lat, lon]).addTo(map).bindPopup(`<b>${f.properties.name}</b>`);
+        });
+
+        // 動態 AR 物件生成
+        loadARPlaces(poiData);
+      }
+
+      // 3. 批次於 AR 畫面生成 3D 物件與標籤
+      function loadARPlaces(geojson) {
+        const scene = document.querySelector('a-scene');
+
+        geojson.features.forEach((feature, idx) => {
+          const [lon, lat] = feature.geometry.coordinates;
+          const { name, color } = feature.properties;
+
+          // 創建包裹容器
+          const entity = document.createElement('a-entity');
+          entity.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${lon};`);
+
+          // 創建 3D 方塊
+          const box = document.createElement('a-box');
+          box.setAttribute('color', color);
+          box.setAttribute('scale', '4 4 4');
+          box.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 4000');
+
+          // 創建懸浮 Billboard 標籤
+          const text = document.createElement('a-text');
+          text.setAttribute('value', name);
+          text.setAttribute('look-at', '[gps-camera]');
+          text.setAttribute('scale', '10 10 10');
+          text.setAttribute('position', '0 6 0');
+          text.setAttribute('align', 'center');
+          text.setAttribute('color', '#FFFFFF');
+
+          entity.appendChild(box);
+          entity.appendChild(text);
+          scene.appendChild(entity);
+        });
+      }
+
+      // 切換視圖控制
+      function switchView() {
+        const mapDiv = document.getElementById('map-container');
+        const arDiv = document.getElementById('ar-container');
+        const btn = document.getElementById('toggle-btn');
+
+        if (currentView === 'map') {
+          mapDiv.style.display = 'none';
+          arDiv.style.display = 'block';
+          btn.innerText = '返回 2D 地圖';
+          btn.style.backgroundColor = '#DC2626';
+          currentView = 'ar';
+        } else {
+          arDiv.style.display = 'none';
+          mapDiv.style.display = 'block';
+          btn.innerText = '開啟 AR 模式';
+          btn.style.backgroundColor = '#2563EB';
+          currentView = 'map';
+        }
+      }
+
+      window.onload = initMap;
+    </script>
+  </body>
+</html>

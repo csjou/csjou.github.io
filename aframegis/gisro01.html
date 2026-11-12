@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>程式 1：醒吾科大至林口轉運站 OSM 地圖</title>
+
+  <!-- 引入 Leaflet.js CSS 與 JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="map"></div>
+
+  <script>
+    // 1. 定義座標 [緯度, 經度]
+    const hsingWuCoord = [25.0792, 121.3965];  // 醒吾科技大學
+    const linkouBusCoord = [25.0645, 121.3625]; // 林口轉運站
+
+    // 2. 初始化地圖，中心設定在兩點大約的中間位置，縮放層級設為 14
+    const map = L.map('map').setView([25.0718, 121.3795], 14);
+
+    // 3. 載入 OpenStreetMap 免費圖塊
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap 貢獻者'
+    }).addTo(map);
+
+    // 4. 新增起點與終點地標標籤
+    const startMarker = L.marker(hsingWuCoord).addTo(map)
+      .bindPopup('<b>起點：醒吾科技大學</b>').openPopup();
+
+    const endMarker = L.marker(linkouBusCoord).addTo(map)
+      .bindPopup('<b>終點：林口轉運站</b>');
+  </script>
+
+</body>
+</html>
