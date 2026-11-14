@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MushroomMonitor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b31489e6da621aefce32889664e6a4889f82c43e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2dc4599145811f4c42e7daeeb518d60b81f275c8")]
 [assembly: System.Reflection.AssemblyProductAttribute("MushroomMonitor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MushroomMonitor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

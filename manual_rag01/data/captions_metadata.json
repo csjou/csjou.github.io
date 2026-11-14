@@ -1,0 +1,982 @@
+[
+  {
+    "source_doc": "EG-ALTERNATOR-TW.pdf",
+    "page_number": 1,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-ALTERNATOR-TW_p1_img1.jpeg",
+        "filename": "EG-ALTERNATOR-TW_p1_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": "發電機結構說明 1"
+      },
+      {
+        "image_path": "data/extracted_images\\EG-ALTERNATOR-TW_p1_img2.jpeg",
+        "filename": "EG-ALTERNATOR-TW_p1_img2.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": "發電機結構說明 2"
+      },
+      {
+        "image_path": "data/extracted_images\\EG-ALTERNATOR-TW_p1_img3.jpeg",
+        "filename": "EG-ALTERNATOR-TW_p1_img3.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": "發電機結構說明 3"
+      },
+      {
+        "image_path": "data/extracted_images\\EG-ALTERNATOR-TW_p1_img4.jpeg",
+        "filename": "EG-ALTERNATOR-TW_p1_img4.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": "發電機外觀圖 1"
+      },
+      {
+        "image_path": "data/extracted_images\\EG-ALTERNATOR-TW_p1_img5.jpeg",
+        "filename": "EG-ALTERNATOR-TW_p1_img5.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": "發電機外觀圖 2"
+      },
+      {
+        "image_path": "data/extracted_images\\EG-ALTERNATOR-TW_p1_img6.jpeg",
+        "filename": "EG-ALTERNATOR-TW_p1_img6.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": "發電機外觀圖 3"
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-ALTERNATOR-TW.pdf",
+    "page_number": 2,
+    "content": "",
+    "images": []
+  },
+  {
+    "source_doc": "EG-ALTERNATOR-TW.pdf",
+    "page_number": 3,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-ALTERNATOR-TW_p3_img1.jpeg",
+        "filename": "EG-ALTERNATOR-TW_p3_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": "ELG184發電機規格表"
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-ALTERNATOR-TW.pdf",
+    "page_number": 4,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-ALTERNATOR-TW_p4_img1.jpeg",
+        "filename": "EG-ALTERNATOR-TW_p4_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": "ELG224發電機規格表"
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-ALTERNATOR-TW.pdf",
+    "page_number": 5,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-ALTERNATOR-TW_p5_img1.jpeg",
+        "filename": "EG-ALTERNATOR-TW_p5_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": "ELG274C-H發電機規格表"
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-ALTERNATOR-TW.pdf",
+    "page_number": 6,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-ALTERNATOR-TW_p6_img1.jpeg",
+        "filename": "EG-ALTERNATOR-TW_p6_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-ALTERNATOR-TW.pdf",
+    "page_number": 7,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-ALTERNATOR-TW_p7_img1.jpeg",
+        "filename": "EG-ALTERNATOR-TW_p7_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-ALTERNATOR-TW.pdf",
+    "page_number": 8,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-ALTERNATOR-TW_p8_img1.jpeg",
+        "filename": "EG-ALTERNATOR-TW_p8_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 1,
+    "content": "",
+    "images": []
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 2,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p2_img1.png",
+        "filename": "EG-TECH DATA-TW_p2_img1.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p2_img2.png",
+        "filename": "EG-TECH DATA-TW_p2_img2.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p2_img3.jpeg",
+        "filename": "EG-TECH DATA-TW_p2_img3.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 3,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p3_img1.png",
+        "filename": "EG-TECH DATA-TW_p3_img1.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p3_img2.jpeg",
+        "filename": "EG-TECH DATA-TW_p3_img2.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p3_img3.png",
+        "filename": "EG-TECH DATA-TW_p3_img3.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p3_img4.png",
+        "filename": "EG-TECH DATA-TW_p3_img4.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p3_img5.jpeg",
+        "filename": "EG-TECH DATA-TW_p3_img5.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 4,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p4_img1.png",
+        "filename": "EG-TECH DATA-TW_p4_img1.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p4_img2.png",
+        "filename": "EG-TECH DATA-TW_p4_img2.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 5,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p5_img1.png",
+        "filename": "EG-TECH DATA-TW_p5_img1.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p5_img2.jpeg",
+        "filename": "EG-TECH DATA-TW_p5_img2.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 6,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p6_img1.png",
+        "filename": "EG-TECH DATA-TW_p6_img1.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p6_img2.jpeg",
+        "filename": "EG-TECH DATA-TW_p6_img2.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 7,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p7_img1.png",
+        "filename": "EG-TECH DATA-TW_p7_img1.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p7_img2.png",
+        "filename": "EG-TECH DATA-TW_p7_img2.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p7_img3.jpeg",
+        "filename": "EG-TECH DATA-TW_p7_img3.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 8,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p8_img1.png",
+        "filename": "EG-TECH DATA-TW_p8_img1.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p8_img2.jpeg",
+        "filename": "EG-TECH DATA-TW_p8_img2.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 9,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p9_img1.png",
+        "filename": "EG-TECH DATA-TW_p9_img1.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p9_img2.png",
+        "filename": "EG-TECH DATA-TW_p9_img2.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 10,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p10_img1.png",
+        "filename": "EG-TECH DATA-TW_p10_img1.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p10_img2.jpeg",
+        "filename": "EG-TECH DATA-TW_p10_img2.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p10_img3.png",
+        "filename": "EG-TECH DATA-TW_p10_img3.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p10_img4.png",
+        "filename": "EG-TECH DATA-TW_p10_img4.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p10_img5.png",
+        "filename": "EG-TECH DATA-TW_p10_img5.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p10_img6.png",
+        "filename": "EG-TECH DATA-TW_p10_img6.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p10_img7.png",
+        "filename": "EG-TECH DATA-TW_p10_img7.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p10_img8.png",
+        "filename": "EG-TECH DATA-TW_p10_img8.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 11,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p11_img1.png",
+        "filename": "EG-TECH DATA-TW_p11_img1.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p11_img2.png",
+        "filename": "EG-TECH DATA-TW_p11_img2.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 12,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p12_img1.png",
+        "filename": "EG-TECH DATA-TW_p12_img1.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p12_img2.jpeg",
+        "filename": "EG-TECH DATA-TW_p12_img2.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p12_img3.png",
+        "filename": "EG-TECH DATA-TW_p12_img3.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p12_img4.png",
+        "filename": "EG-TECH DATA-TW_p12_img4.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 13,
+    "content": "",
+    "images": []
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 14,
+    "content": "",
+    "images": []
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 15,
+    "content": "",
+    "images": []
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 16,
+    "content": "",
+    "images": []
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 17,
+    "content": "",
+    "images": []
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 18,
+    "content": "",
+    "images": []
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 19,
+    "content": "",
+    "images": []
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 20,
+    "content": "",
+    "images": []
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 21,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p21_img1.jpeg",
+        "filename": "EG-TECH DATA-TW_p21_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 22,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p22_img1.jpeg",
+        "filename": "EG-TECH DATA-TW_p22_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 23,
+    "content": "",
+    "images": []
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 24,
+    "content": "",
+    "images": []
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 25,
+    "content": "",
+    "images": []
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 26,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p26_img1.png",
+        "filename": "EG-TECH DATA-TW_p26_img1.png",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 27,
+    "content": "",
+    "images": []
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 28,
+    "content": "",
+    "images": []
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 29,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p29_img1.jpeg",
+        "filename": "EG-TECH DATA-TW_p29_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 30,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EG-TECH DATA-TW_p30_img1.jpeg",
+        "filename": "EG-TECH DATA-TW_p30_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EG-TECH DATA-TW.pdf",
+    "page_number": 31,
+    "content": "",
+    "images": []
+  },
+  {
+    "source_doc": "EVERGUS-EG INST-TW-2607.pdf",
+    "page_number": 1,
+    "content": " \n",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p1_img1.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p1_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p1_img2.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p1_img2.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p1_img3.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p1_img3.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p1_img4.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p1_img4.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p1_img5.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p1_img5.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p1_img6.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p1_img6.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p1_img7.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p1_img7.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EVERGUS-EG INST-TW-2607.pdf",
+    "page_number": 2,
+    "content": "九如牌發電機組  |  安裝施工說明書\n經濟實業股份有限公司\nINSTALLATION MANUAL\nwww.evergushpump.com.tw\n00\n使用前必讀\nREAD BEFORE INSTALLATION\n手冊用途\n本說明書旨在加強柴油引擎發電機組安裝作業、提升安裝品質並確保施工安全，供安裝與監工人員作業參考。\n章節導覽  CONTENTS\n01   總則\nGENERAL\n02   引擎發電機主體\nGENERATOR SET\n03   冷卻系統\nCOOLING SYSTEM\n04   燃油系統\nFUEL SYSTEM\n05   排氣系統\nEXHAUST SYSTEM\n06   控制設備及電氣系統\nCONTROL & ELECTRICAL\n07   試機\nCOMMISSIONING\n01  總則  GENERAL\n1. 目的\n為加強柴油引擎發電機安裝作業，提升安裝品質及注意安裝安全等，特訂定本安裝說明，做為安裝人員之參\n考。\n2. 適用範圍\n本安裝說明適用於柴油引擎發電機及相關附屬設備工程。\n安裝關鍵數據  KEY INSTALLATION DATA\n吊掛安全裕量\n至少 20% 以上\n排氣溫度\n約 400～600℃\n出風口有效面積\n至少為水箱面積 1.5 倍\n自然進氣有效面積\n至少為水箱面積 2.25 倍\n排氣管路超過\n5 m 需核算總背壓\n導管耐溫要求\n材質需耐溫 60℃\n\n【頁面表格內容】:\n| Col0   | 00   | 使用前必讀   | READ BEFORE INSTALLATION   |\n|--------|------|---------|----------------------------|\n\n\n【頁面表格內容】:\n| 吊掛安全裕量        | 排氣溫度           |\n| 至少 20% 以上     | 約 400～600℃     |\n|:--------------|:---------------|\n| 出風口有效面積       | 自然進氣有效面積       |\n| 至少為水箱面積 1.5 倍 | 至少為水箱面積 2.25 倍 |\n| 排氣管路超過        | 導管耐溫要求         |\n| 5 m 需核算總背壓    | 材質需耐溫 60℃      |\n",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p2_img1.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p2_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p2_img2.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p2_img2.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p2_img3.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p2_img3.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p2_img4.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p2_img4.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p2_img5.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p2_img5.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p2_img6.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p2_img6.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p2_img7.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p2_img7.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EVERGUS-EG INST-TW-2607.pdf",
+    "page_number": 3,
+    "content": "九如牌發電機組  |  安裝施工說明書\n經濟實業股份有限公司\nINSTALLATION MANUAL\nwww.evergushpump.com.tw\n \n02\n引擎發電機主體\nGENERATOR SET\n1. 搬運及安裝  HANDLING & INSTALLATION\n(1) 發電機組及配件清點：柴油引擎發電機組運抵工地後，負責人員應依照表列清單，核對機器銘牌標示及所需附\n件是否齊全。\n(2) 機組搬進安裝機房，應有妥善搬運計畫與對策，事先擬定搬運路線及所需工具，器材之搬運應儘量以機械代替\n人力。\n(3) 一般柴油引擎發電機組包括引擎、散熱水箱及交流發電機，組合於同一基座上，吊搬時應特別注意，避免發生\n碰撞。\n(4) 吊掛作業須特別注意安全，使發電機組保持於水平狀態，而鋼纜或鏈條應與空氣濾清器、發電機導管箱、引擎\n歧管等機器部位保持適當距離，以免擠壓而使該配件受損。\n(5) 吊掛發電機組所使用的起吊設備，鋼纜及鏈條必須有足夠之安全強度，其強度須足以吊起整組發電機組之重\n量，並留有至少20%以上之安全裕量，且使用前應詳細檢查其是否銹蝕或損壞，在起吊前應附加穩定繩索，\n人員避免接近鋼纜及發電機組，以確保發電機組吊運之穩定與安全。\n(6) 裝有避震器時，排氣管、水管、油管及電氣配管配線之施工，在適當位置必須以可撓性材質或可撓性管子連\n接。\n吊掛安全重點\n機組吊運時須維持水平，吊具留有至少 20% 安全裕量，並使用穩定繩索；任何人員不得接近受力鋼纜及懸吊中的\n發電機組。\n\n【頁面表格內容】:\n| 02   | 引擎發電機主體   | GENERATOR SET   |\n|------|-----------|-----------------|\n",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p3_img1.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p3_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p3_img2.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p3_img2.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p3_img3.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p3_img3.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p3_img4.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p3_img4.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p3_img5.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p3_img5.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p3_img6.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p3_img6.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p3_img7.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p3_img7.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EVERGUS-EG INST-TW-2607.pdf",
+    "page_number": 4,
+    "content": "九如牌發電機組  |  安裝施工說明書\n經濟實業股份有限公司\nINSTALLATION MANUAL\nwww.evergushpump.com.tw\n \n03\n冷卻系統\nCOOLING SYSTEM\n一般引擎的散熱器主要是隨機配置的水箱，其安裝要點如下：\n(1) 散熱器與引擎直接連接在共同基座上，如本型發電機組裝在室內時，散熱器之排風口必須預留排風口，散熱器所排\n出之熱空氣必須以導管排出引擎室外，以避免熱空氣迴流，使機房溫度上升，影響機組性能。\n(2) 排風管與散熱器連接處，使用不燃性帆布連接，以防止震動傳遞，導風管可使用鍍鋅鐵板或不燃性帆布製作，但須\n特別注意強度，以避免送風時產生噪音；必要時可做支架固定於地面，以增加穩固性。\n(3) 如出風無法直接吹出，而需轉向時(如圖3.1 示)，應製作出風導板，引導出風向上，避免產生亂流。\n(4) 出風口面積應至少為水箱面積的1.5 倍，但若裝有出風百葉時，面積應以百葉實際有效面積計算；若為自然進氣，進\n風口有效面積須為水箱面積2.25 倍以上。\n(5) 散熱器裝置於地下室與牆壁排風口不同高度時，兩排風口管道間應裝設排風導管。\n材質耐溫\n導風與排風相關材質需耐溫 60℃。\n圖 3.1  水箱散熱器安裝示意\n\n【頁面表格內容】:\n| 03   | 冷卻系統   | COOLING SYSTEM   |\n|------|--------|------------------|\n",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p4_img1.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p4_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p4_img2.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p4_img2.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p4_img3.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p4_img3.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p4_img4.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p4_img4.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p4_img5.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p4_img5.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p4_img6.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p4_img6.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p4_img7.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p4_img7.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EVERGUS-EG INST-TW-2607.pdf",
+    "page_number": 5,
+    "content": "九如牌發電機組  |  安裝施工說明書\n經濟實業股份有限公司\nINSTALLATION MANUAL\nwww.evergushpump.com.tw\n04\n燃油系統\nFUEL SYSTEM\n1. 油箱  FUEL TANK\n(1) 油箱安裝位置須考慮引擎進油泵吸油能力。\n(2) 日用油箱之出油口及迴油口應使用銅管或不銹鋼管製作。\n(3) 油箱四週應有防油堤，高度所圍住之容量須大於油箱容量。\n(4) 油箱出油口連結引擎進油口。\n(5) 油箱迴油口連結引擎迴油口。\n05\n排氣系統\nEXHAUST SYSTEM\n1. 排氣管之配管  EXHAUST PIPING\n(1) 由於引擎排出的廢氣溫度高達 400～600℃，引擎之排氣管因高溫熱膨脹，一般在引擎排氣口上加裝不銹鋼質伸縮軟\n管以吸收變形及防震；若排氣管路超過5m 以上時，應另行計算排氣管總背壓是否符合引擎之背壓限制。(如圖\n5.1、圖5.2 及圖5.3 所示)。\n(2) 排氣管路較長時，應考慮在管路中加裝膨脹接頭，以吸收熱變形。\n(3) 室內之排氣管路應包覆隔熱材料，以避免高溫危險及機房溫度過高。\n圖 5.1  排氣管配管系統示意圖\n\n【頁面表格內容】:\n| Col0   | 04   | 燃油系統   | FUEL SYSTEM   |\n|--------|------|--------|---------------|\n\n\n【頁面表格內容】:\n| 05   | 排氣系統   | EXHAUST SYSTEM   |\n|------|--------|------------------|\n",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p5_img1.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p5_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p5_img2.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p5_img2.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EVERGUS-EG INST-TW-2607.pdf",
+    "page_number": 6,
+    "content": "九如牌發電機組  |  安裝施工說明書\n經濟實業股份有限公司\nINSTALLATION MANUAL\nwww.evergushpump.com.tw\n \n05\n排氣系統（續）\nEXHAUST SYSTEM\n圖 5.2  小型引擎發電機排氣管之安裝示意圖\n圖 5.3  引擎發電機基本安裝示意圖\n(1) 配管安裝時須注意勿使不銹鋼伸縮軟管受力變形。\n(2) 消音器兩端為法蘭接頭，安裝時必須注意排氣的方向及向下的排水設施，同時應考慮所增加的背壓值。\n(3) 排氣管經過易燃性牆壁、隔板或屋頂時，應加裝耐熱護套管，以防止高溫所引發之火災。\n(4) 排氣管彎頭儘量使用配管長彎頭。\n(5) 排氣管出口使用向下之彎頭，以防雨水侵入，並加裝防鳥網，以防止鳥類等異物入內，安裝時必須注意排氣出口方\n向、風向及排氣的反射噪音。\n(6) 室內排氣管路及消音器，建議加隔熱材料，露出屋外排氣管路及配件，建議使用不銹鋼材質以防銹蝕。\n高溫與防火\n排氣管穿越易燃性牆壁、隔板或屋頂時，必須加裝耐熱護套管；室內排氣管路及消音器應採隔熱處理。\n\n【頁面表格內容】:\n| 05   | 排氣系統（續）   | EXHAUST SYSTEM   |\n|------|-----------|------------------|\n\n\n【頁面表格內容】:\n| 圖 5.2 小型引擎發電機排氣管之安裝示意圖   | 圖 5.3 引擎發電機基本安裝示意圖   |\n|--------------------------|----------------------|\n",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p6_img1.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p6_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p6_img2.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p6_img2.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p6_img3.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p6_img3.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p6_img4.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p6_img4.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p6_img5.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p6_img5.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p6_img6.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p6_img6.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p6_img7.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p6_img7.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EVERGUS-EG INST-TW-2607.pdf",
+    "page_number": 7,
+    "content": "九如牌發電機組  |  安裝施工說明書\n經濟實業股份有限公司\nINSTALLATION MANUAL\nwww.evergushpump.com.tw\n \n06\n控制設備及電氣系統\nCONTROL & ELECTRICAL\n1. 靜止型充電機  BATTERY CHARGER\n(1) 應先了解充電機之電源側電壓。\n(2) 將輸入端電源接入相同電壓之市電中，輸出端接於控制盤端子或引擎之啟動電池之正負極上。\n(3) 裝設位置須儘量靠近引擎旁，裝置牢固並易檢視之處所。\n2. 啟動電池  STARTING BATTERY\n(1) 啟動電池裝置於引擎發電機側之易保養及通風的地方，配線及使用須注意安全。\n(2) 蓄電池應依製造廠商之規定，加入合適比重之電解液，經初充電及再充電後接於靜止型充電機，維持浮充狀\n態。\n3. 配線  WIRING\n(1) 配線時導線之線徑大於 5 平方公厘者得並聯使用，但並聯之導線，其長度、導體材質、截面積及絕緣材質等均\n需相同，且使用相同之裝置法。\n(2) 配管內之導線不得使用兩條相互連接之導線。\n(3) 引擎發電機組之各項設備應接地，以防感電事故發生。\n電氣安全\n進行配線、充電機與啟動電池施工時，應確認電壓規格、極性與接地正確，並將電池設於通風且易保養之位置。\n\n【頁面表格內容】:\n| 06   | 控制設備及電氣系統   | CONTROL & ELECTRICAL   |\n|------|-------------|------------------------|\n",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p7_img1.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p7_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p7_img2.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p7_img2.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p7_img3.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p7_img3.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p7_img4.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p7_img4.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p7_img5.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p7_img5.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p7_img6.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p7_img6.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p7_img7.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p7_img7.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EVERGUS-EG INST-TW-2607.pdf",
+    "page_number": 8,
+    "content": "九如牌發電機組  |  安裝施工說明書\n經濟實業股份有限公司\nINSTALLATION MANUAL\nwww.evergushpump.com.tw\n \n07\n試機\nCOMMISSIONING\n1. 試機前之準備工作  PRE-COMMISSIONING CHECK\n項次\n檢查項目\n確認\n1\n檢查機器各部分與周圍環境是否清潔及查核監工日誌。\n□\n2\n檢查機器內外部是否遺留工具、儀器及其他材料雜物。\n□\n3\n檢查機器外殼之接地是否合乎規定。\n□\n4\n校對機器及控制盤上各項指示表。\n□\n5\n檢查各種固定螺絲及安裝方式是否合乎規定。\n□\n6\n檢查電路配電系統、啟動電池電壓、比重、發電機輸出相序及切換開關。\n□\n7\n檢查燃油管路系統及燃油量。\n□\n8\n檢查散熱冷卻系統、冷卻水量及潤滑油量。\n□\n9\n檢查排氣管路及排風口處是否有異物阻擋。\n□\n2. 啟動引擎  ENGINE START\n(1) 啟動引擎前必須詳閱操作說明書，確實依照規定程序進行操作。\n(2) 引擎啟動後須觀察機油壓力表指示，倘若在10～15 秒內機油壓力無法建立或過低，應將引擎熄火，並檢查潤滑油系\n統。\n(3) 當引擎啟動運轉後應檢查潤滑油管路及燃油管路等有無洩漏，必要時旋緊接頭以防洩漏或通知本公司派員修護。\n異常處置\n啟動後 10～15 秒內若機油壓力未建立或過低，應立即熄火並檢查潤滑油系統。\n\n【頁面表格內容】:\n| 07   | 試機   | COMMISSIONING   |\n|------|------|-----------------|\n\n\n【頁面表格內容】:\n|   項次 | 檢查項目                             | 確認   |\n|-----:|:---------------------------------|:-----|\n|    1 | 檢查機器各部分與周圍環境是否清潔及查核監工日誌。         | □    |\n|    2 | 檢查機器內外部是否遺留工具、儀器及其他材料雜物。         | □    |\n|    3 | 檢查機器外殼之接地是否合乎規定。                 | □    |\n|    4 | 校對機器及控制盤上各項指示表。                  | □    |\n|    5 | 檢查各種固定螺絲及安裝方式是否合乎規定。             | □    |\n|    6 | 檢查電路配電系統、啟動電池電壓、比重、發電機輸出相序及切換開關。 | □    |\n|    7 | 檢查燃油管路系統及燃油量。                    | □    |\n|    8 | 檢查散熱冷卻系統、冷卻水量及潤滑油量。              | □    |\n|    9 | 檢查排氣管路及排風口處是否有異物阻擋。              | □    |\n",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p8_img1.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p8_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p8_img2.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p8_img2.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p8_img3.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p8_img3.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p8_img4.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p8_img4.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p8_img5.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p8_img5.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p8_img6.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p8_img6.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p8_img7.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p8_img7.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  },
+  {
+    "source_doc": "EVERGUS-EG INST-TW-2607.pdf",
+    "page_number": 9,
+    "content": "",
+    "images": [
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p9_img1.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p9_img1.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p9_img2.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p9_img2.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p9_img3.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p9_img3.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p9_img4.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p9_img4.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p9_img5.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p9_img5.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p9_img6.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p9_img6.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      },
+      {
+        "image_path": "data/extracted_images\\EVERGUS-EG INST-TW-2607_p9_img7.jpeg",
+        "filename": "EVERGUS-EG INST-TW-2607_p9_img7.jpeg",
+        "auto_caption": "圖片解析失敗: model 'qwen2-vl' not found (status code: 404)",
+        "manual_caption": ""
+      }
+    ]
+  }
+]
